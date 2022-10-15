@@ -14,20 +14,15 @@ import lombok.Setter;
 @Setter
 public class CategoryDTO {
 
+	private Long id;
 
-    @NotNull(message="Please Provide Category Name")
-    @Size(min=2,max=80,message="Category Name '${validatedValue}' must be between {min} and {max} chars long")
-    private String name;
+	@NotNull(message = "Please Provide Category Name")
+	@Size(min = 2, max = 80, message = "Category Name '${validatedValue}' must be between {min} and {max} chars long")
+	private String name;
 
+	@NotNull(message = "Please provide BuiltIn")
+	private Boolean builtIn = false;
 
-    @NotNull(message="Please provide BuiltIn")
-    private Boolean builtIn=false;
-
-
-   // @Id
-   // @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    //private Integer sequence;
-
-
+	private Integer sequence;
 
 }

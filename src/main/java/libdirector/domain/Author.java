@@ -1,6 +1,8 @@
 package libdirector.domain;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import libdirector.repository.BookRepository;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,9 +22,11 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+
 @Entity
 @Table(name = "tbl_authors")
 public class Author {
+	
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
@@ -35,4 +40,5 @@ public class Author {
     @OneToMany(mappedBy = "bookAuthor")
     private List<Book> authorBooks=new ArrayList<>();
 
+	
 }

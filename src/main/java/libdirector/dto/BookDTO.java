@@ -6,6 +6,16 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
+import libdirector.domain.Author;
+import libdirector.domain.Category;
+import libdirector.domain.Publisher;
+import libdirector.exception.ResourceNotFoundException;
+import libdirector.exception.message.ErrorMessage;
+import libdirector.repository.AuthorRepository;
+import libdirector.repository.CategoryRepository;
+import libdirector.repository.PublisherRepository;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,42 +27,70 @@ import lombok.Setter;
 @AllArgsConstructor
 public class BookDTO {
 
-    @Size(min = 2,max = 80,message="Size is exceeded")
-    @NotNull(message = "Please provide book name")
-    private String name;
+	@Autowired
+	AuthorRepository authorRepository;
 
-    @NotNull(message = "Please provide isbn")
-    @Size(max = 17)
-    @Pattern(regexp = "^\\d{3}-\\d{2}-\\d{5}-\\d{2}-\\d$",
-            message = "Please provide valid isbn number")
-    private String isbn;
+	@Autowired
+	PublisherRepository publisherRepository;
 
-    private Integer pageCount;
+	@Autowired
+	CategoryRepository categoryRepository;
 
-    @NotNull(message = "Please provide a Author id")
-    private Long bookAuthor;
+	@Size(min = 2, max = 80, message = "Size is exceeded")
+	@NotNull(message = "Please provide book name")
+	private String name;
 
-    @NotNull(message = "Please provide a Publichser id")
-    private Long bookPublisher;
+	@NotNull(message = "Please provide isbn")
+	@Size(max = 17)
+	@Pattern(regexp = "^\\d{3}-\\d{2}-\\d{5}-\\d{2}-\\d$", message = "Please provide valid isbn number")
+	private String isbn;
 
-    private Integer publishDate;
+	private Integer pageCount;
 
-    @NotNull(message = "Please provide A Category id")
-    private Long bookCategory;
+	@NotNull(message = "Please provide a Author id")
+	private Long bookAuthor;
 
-    private File image;
+	@NotNull(message = "Please provide a Publichser id")
+	private Long bookPublisher;
 
+	private Integer publishDate;
 
-    @NotNull(message = "Please provide shelf Code")
-    @Size(min = 6, max = 6)
-    @Pattern(regexp = "^[A-Z]{2}-\\d{3}$",
-            message = "Please provide a valid shelf Code")
-    private String shelfCode;
+	@NotNull(message = "Please provide A Category id")
+	private Long bookCategory;
 
-    @NotNull(message = "Please provide shelf Code")
-    private Boolean featured = false;
+	private File image;
 
+	@NotNull(message = "Please provide shelf Code")
+	@Size(min = 6, max = 6)
+	@Pattern(regexp = "^[A-Z]{2}-\\d{3}$", message = "Please provide a valid shelf Code")
+	private String shelfCode;
 
+	@NotNull(message = "Please provide featured")
+	private Boolean featured = false;
 
+	private Author getBookAuthor() {
+
+		Author author = authorRepository.findById(bookAuthor).orElseThrow(
+				() -> new ResourceNotFoundException(String.format(ErrorMessage.AUTHOR_NOT_FOUND_MESSAGE, bookAuthor)));
+
+		return author;
+	}
+
+	private Publisher getBookPublisher() {
+
+		Publisher publisher = publisherRepository.findById(bookPublisher)
+				.orElseThrow(() -> new ResourceNotFoundException(
+						String.format(ErrorMessage.PUBLISHER_NOT_FOUND_MESSAGE, bookPublisher)));
+
+		return publisher;
+	}
+
+	private Category getBookCategory() {
+
+		Category category = categoryRepository.findById(bookCategory).orElseThrow(() -> new ResourceNotFoundException(
+				String.format(ErrorMessage.CATEGORY_NOT_FOUND_MESSAGE, bookCategory)));
+
+		return category;
+	}
 
 }

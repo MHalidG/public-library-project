@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import libdirector.domain.Publisher;
 import libdirector.dto.PublisherDTO;
 import libdirector.service.PublisherService;
 import lombok.AllArgsConstructor;
@@ -18,20 +19,14 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class PublisherController {
 
-    private PublisherService publisherService;
+	private PublisherService publisherService;
 
+	@PostMapping("/add")
+	// TO DO: PreAuthorize()admin eklenecek
+	public ResponseEntity<Publisher> savePublisher(@Valid @RequestBody PublisherDTO publisherDTO) {
 
+		return new ResponseEntity<>(publisherService.savePublisher(publisherDTO), HttpStatus.CREATED);
 
-    @PostMapping("/add")
-    //TO DO: PreAuthorize()admin eklenecek
-    public ResponseEntity<PublisherDTO> savePublisher(@Valid @RequestBody PublisherDTO publisherDTO) {
-    	
-    	publisherService.savePublisher(publisherDTO);
-    	
-        return new ResponseEntity<>(HttpStatus.CREATED);
-
-    }
-
-
+	}
 
 }

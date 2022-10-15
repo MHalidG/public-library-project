@@ -24,18 +24,17 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Publisher {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
 
-    @Column(length = 50, nullable = false)
-    private String name;
+	@Column(length = 50, nullable = false)
+	private String name;
 
-    @Column(nullable = false)
-    Boolean builtIn =false;
+	@Column(nullable = false)
+	Boolean builtIn = false;
 
-
-    @OneToMany(mappedBy = "bookPublisher")
-    private List<Book> publisherBooks=new ArrayList<>();
+	@OneToMany(mappedBy = "bookPublisher")
+	private List<Book> publisherBooks = new ArrayList<>();
 
 }

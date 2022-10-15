@@ -6,6 +6,11 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+
+import org.hibernate.annotations.GenericGenerator;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.io.File;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -16,71 +21,64 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name="tbl_books")
+@Table(name = "tbl_books")
 public class Book {
 
-    @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
 
-    @Column(length = 80, nullable=false)
-    private String name;
+	@Column(length = 80, nullable = false)
+	private String name;
 
-    @Column(length = 17, nullable=false)
-    private String isbn;
+	@Column(length = 17, nullable = false)
+	private String isbn;
 
-    @Column
-    private Integer pageCount;
+	@Column
+	private Integer pageCount;
 
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@JoinColumn(name = "authorId", nullable = false)
+	private Author bookAuthor;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name="authorId", nullable=false)
-    private Author bookAuthor;
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@JoinColumn(name = "publisherId", nullable = false)
+	private Publisher bookPublisher;
 
+	@Column
+	private Integer publishDate;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name="publisherId", nullable=false)
-    private Publisher bookPublisher;
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@JoinColumn(name = "categoryId", nullable = false)
+	private Category bookCategory;
 
+	@Column
+	private File image;
+	/*
+	@JsonIgnore
+	@Lob
+	//@Lob= Image LockObject annot ile belirtilir.
+	private byte[] data;
+*/
+	@Column(nullable = false)
+	private Boolean loanable = true;
 
-    @Column
-    private Integer publishDate;
+	@Column(length = 6, nullable = false)
+	private String shelfCode;
 
+	@Column(nullable = false)
+	private Boolean active = true;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name="categoryId", nullable=false)
-    private Category bookCategory;
+	@Column(nullable = false)
+	private Boolean featured = false;
 
+	@Column(nullable = false)
+	private LocalDateTime createDate;
 
+	@Column(nullable = false)
+	private Boolean builtIn = false;
 
-    @Column
-    private File image;
-
-    @Column(nullable=false)
-    private Boolean loanable = true;
-
-    @Column(length = 6, nullable=false)
-    private String shelfCode;
-
-    @Column(nullable=false)
-    private Boolean active = true;
-
-    @Column(nullable=false)
-    private Boolean featured = false;
-
-    @Column(nullable=false)
-    private LocalDateTime createDate;
-
-    @Column(nullable=false)
-    private Boolean builtIn =false;
-
-    @OneToMany(mappedBy = "loanedBooks")
-    private List<Loan> loanedBooks=new ArrayList<>();
-
-
-
-
-
-
+	@OneToMany(mappedBy = "loanedBooks")
+	private List<Loan> loanedBooks = new ArrayList<>();
 
 }

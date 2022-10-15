@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 
 import libdirector.domain.Author;
 import libdirector.dto.AuthorDTO;
+import libdirector.dto.mapper.AuthorMapper;
 import libdirector.repository.AuthorRepository;
 import lombok.AllArgsConstructor;
 
@@ -11,17 +12,22 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class AuthorService {
 
+	private AuthorMapper authorMapper;
+	
     private AuthorRepository authorRepository;
 
+    
+    //@Transactional(readOnly=true)
     public Author saveAuthor(AuthorDTO authorDTO){
-        Author author=new Author();
-        author.setName(authorDTO.getName());
-        author.setBuiltIn(authorDTO.getBuiltIn());
+        Author author= authorMapper.authorDTOToAuthor(authorDTO);
         authorRepository.save(author);
         return author;
 
     }
 
+    
+    
+    
     public Author getAuthorById(Long id) {
 
         return authorRepository.findById(id).orElseThrow(()-> new RuntimeException("No Found"));

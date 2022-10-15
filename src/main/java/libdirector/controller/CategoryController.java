@@ -1,7 +1,5 @@
 package libdirector.controller;
 
-import java.util.Locale.Category;
-
 import javax.validation.Valid;
 
 import org.springframework.http.HttpStatus;
@@ -20,17 +18,14 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class CategoryController {
 
-    private CategoryService categoryService;
+	private CategoryService categoryService;
 
+	@PostMapping("/add")
+	// TO DO: PreAuthorize()admin eklenecek
+	public ResponseEntity<HttpStatus> saveCategory(@Valid @RequestBody CategoryDTO categoryDTO) {
 
+		categoryService.saveCategory(categoryDTO);
+		return new ResponseEntity<>(HttpStatus.CREATED);
 
-    @PostMapping("/add")
-    //TO DO: PreAuthorize()admin eklenecek
-    public ResponseEntity<HttpStatus> saveCategory(@Valid @RequestBody CategoryDTO categoryDTO) {
-
-    	
-    	categoryService.saveCategory(categoryDTO);
-        return new ResponseEntity<>(HttpStatus.CREATED);
-
-    }
+	}
 }
