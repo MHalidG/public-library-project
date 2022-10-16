@@ -2,13 +2,13 @@ package libdirector.dto.mapper;
 
 import javax.annotation.processing.Generated;
 import libdirector.domain.Book;
-import libdirector.dto.BookDTO;
+import libdirector.domain.dto.BookDTO;
 import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-10-15T04:20:02+0200",
-    comments = "version: 1.4.2.Final, compiler: Eclipse JDT (IDE) 1.4.50.v20210914-1429, environment: Java 11.0.15.1 (Oracle Corporation)"
+    date = "2022-10-16T03:59:39+0200",
+    comments = "version: 1.4.2.Final, compiler: javac, environment: Java 17.0.2 (Oracle Corporation)"
 )
 @Component
 public class BookMapperImpl implements BookMapper {
@@ -21,13 +21,16 @@ public class BookMapperImpl implements BookMapper {
 
         Book book = new Book();
 
-        book.setFeatured( bookDTO.getFeatured() );
-        book.setImage( bookDTO.getImage() );
-        book.setIsbn( bookDTO.getIsbn() );
         book.setName( bookDTO.getName() );
+        book.setIsbn( bookDTO.getIsbn() );
         book.setPageCount( bookDTO.getPageCount() );
+        book.setBookAuthor( bookDTO.getBookAuthor() );
+        book.setBookPublisher( bookDTO.getBookPublisher() );
         book.setPublishDate( bookDTO.getPublishDate() );
+        book.setBookCategory( bookDTO.getBookCategory() );
+        book.setImage( bookDTO.getImage() );
         book.setShelfCode( bookDTO.getShelfCode() );
+        book.setFeatured( bookDTO.getFeatured() );
 
         return book;
     }

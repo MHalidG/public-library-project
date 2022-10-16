@@ -31,4 +31,8 @@ public class Role {
     @Column(nullable = false)
     private RoleType name;
 
+    @Override
+    public String toString() {
+        return "Role [name=" + name +"]";
+    }
 }

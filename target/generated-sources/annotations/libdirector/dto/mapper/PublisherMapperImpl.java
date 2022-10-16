@@ -2,13 +2,13 @@ package libdirector.dto.mapper;
 
 import javax.annotation.processing.Generated;
 import libdirector.domain.Publisher;
-import libdirector.dto.PublisherDTO;
+import libdirector.domain.dto.PublisherDTO;
 import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-10-15T04:20:02+0200",
-    comments = "version: 1.4.2.Final, compiler: Eclipse JDT (IDE) 1.4.50.v20210914-1429, environment: Java 11.0.15.1 (Oracle Corporation)"
+    date = "2022-10-16T03:59:39+0200",
+    comments = "version: 1.4.2.Final, compiler: javac, environment: Java 17.0.2 (Oracle Corporation)"
 )
 @Component
 public class PublisherMapperImpl implements PublisherMapper {
@@ -21,9 +21,9 @@ public class PublisherMapperImpl implements PublisherMapper {
 
         Publisher publisher = new Publisher();
 
-        publisher.setBuiltIn( publisherDTO.getBuiltIn() );
         publisher.setId( publisherDTO.getId() );
         publisher.setName( publisherDTO.getName() );
+        publisher.setBuiltIn( publisherDTO.getBuiltIn() );
 
         return publisher;
     }

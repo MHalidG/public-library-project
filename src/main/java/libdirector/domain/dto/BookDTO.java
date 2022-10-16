@@ -1,4 +1,4 @@
-package libdirector.dto;
+package libdirector.domain.dto;
 
 import java.io.File;
 
@@ -27,13 +27,11 @@ import lombok.Setter;
 @AllArgsConstructor
 public class BookDTO {
 
-	@Autowired
 	AuthorRepository authorRepository;
 
-	@Autowired
 	PublisherRepository publisherRepository;
 
-	@Autowired
+
 	CategoryRepository categoryRepository;
 
 	@Size(min = 2, max = 80, message = "Size is exceeded")
@@ -68,7 +66,7 @@ public class BookDTO {
 	@NotNull(message = "Please provide featured")
 	private Boolean featured = false;
 
-	private Author getBookAuthor() {
+	public Author getBookAuthor() {
 
 		Author author = authorRepository.findById(bookAuthor).orElseThrow(
 				() -> new ResourceNotFoundException(String.format(ErrorMessage.AUTHOR_NOT_FOUND_MESSAGE, bookAuthor)));
@@ -76,7 +74,7 @@ public class BookDTO {
 		return author;
 	}
 
-	private Publisher getBookPublisher() {
+	public Publisher getBookPublisher() {
 
 		Publisher publisher = publisherRepository.findById(bookPublisher)
 				.orElseThrow(() -> new ResourceNotFoundException(
@@ -85,7 +83,7 @@ public class BookDTO {
 		return publisher;
 	}
 
-	private Category getBookCategory() {
+	public Category getBookCategory() {
 
 		Category category = categoryRepository.findById(bookCategory).orElseThrow(() -> new ResourceNotFoundException(
 				String.format(ErrorMessage.CATEGORY_NOT_FOUND_MESSAGE, bookCategory)));

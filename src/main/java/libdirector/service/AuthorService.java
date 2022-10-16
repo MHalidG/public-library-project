@@ -3,7 +3,7 @@ package libdirector.service;
 import org.springframework.stereotype.Service;
 
 import libdirector.domain.Author;
-import libdirector.dto.AuthorDTO;
+import libdirector.domain.dto.AuthorDTO;
 import libdirector.dto.mapper.AuthorMapper;
 import libdirector.repository.AuthorRepository;
 import lombok.AllArgsConstructor;

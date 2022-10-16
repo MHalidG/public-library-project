@@ -1,27 +1,75 @@
 package libdirector.domain.dto;
-import java.time.LocalDateTime;
-import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
-
+import libdirector.domain.Role;
+import libdirector.domain.enums.RoleType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserDTO {
+	private Long id;
+
+	private String firstName;
+
+	private String lastName;
+
+	private int score=0;
+
+	private String address;
+
+	private String phone;
+
+	private LocalDateTime birthDate;
+
+	private String email;
+
+	private LocalDateTime createDate;
+
+	private String resetPasswordCode;
+
+	private Boolean builtIn=false;
+	private Set<Role> roles;
+
+/*
+	public void SetRoles(Set<Role> roles){
+		Set<String> rolesStr=new HashSet<>();
+		roles.forEach(r->{
+			if (r.getName().equals(RoleType.ROLE_ADMIN))
+				rolesStr.add("Administrator");
+			else if (r.getName().equals(RoleType.ROLE_STAFF))
+				rolesStr.add("Staff");
+			else
+				rolesStr.add("Member");
+		});
+		this.roles=rolesStr;
+	}
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	/*
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
@@ -75,5 +123,5 @@ public class UserDTO {
 	@Column(nullable=false)
 	private Boolean builtIn=false;
 	
-	
+*/
 }

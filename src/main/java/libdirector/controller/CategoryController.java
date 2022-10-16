@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import libdirector.dto.CategoryDTO;
+import libdirector.domain.dto.CategoryDTO;
 import libdirector.service.CategoryService;
 import lombok.AllArgsConstructor;
 

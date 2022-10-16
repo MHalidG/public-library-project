@@ -1,33 +1,31 @@
-/*package libdirector.controller;
+package libdirector.controller;
 
-import javax.validation.Valid;
-
-import org.springframework.http.HttpStatus;
+import libdirector.domain.dto.UserDTO;
+import libdirector.service.UserService;
+import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import libdirector.service.UserService;
-import lombok.AllArgsConstructor;
+import java.util.List;
 
 @RestController
-@RequestMapping
+@RequestMapping("/user")
 @AllArgsConstructor
-public class UserJWTController {
+public class UserController {
 
     private UserService userService;
 
-    @PostMapping("/register")
-    public ResponseEntity<LResponse> register(@Valid @RequestBody RegisterRequest registerRequest){
-        userService.register(registerRequest);
+    @GetMapping
+    @PreAuthorize("hasRole('ADMIN') or hasRole('STAFF')")
+    public ResponseEntity<List<UserDTO>> getAllUsers(){
+        List<UserDTO> users=userService.getAllUsers();
 
-        LResponse response = new LResponse();
-        response.setMessage(ResponseMessages.REGISTER_RESPONSE_MESSAGE);
-        response.setSuccess(true);
+        return ResponseEntity.ok(users);
 
-        return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
+
+
 }
-*/

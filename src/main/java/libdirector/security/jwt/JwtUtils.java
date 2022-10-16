@@ -42,6 +42,7 @@ public class JwtUtils {
 	public boolean validateJwtToken(String token) {
 		try {
 			Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token);
+			return true;
 		} catch (ExpiredJwtException e) {
 			logger.error("JWT Token is expired {}", e.getMessage());
 		} catch (UnsupportedJwtException e) {

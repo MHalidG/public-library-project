@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import libdirector.domain.Loan;
-import libdirector.dto.LoanDTO;
+import libdirector.domain.dto.LoanDTO;
 import libdirector.service.LoanService;
 import lombok.AllArgsConstructor;
 

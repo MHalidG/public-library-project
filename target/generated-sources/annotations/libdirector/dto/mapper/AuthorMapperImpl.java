@@ -2,13 +2,13 @@ package libdirector.dto.mapper;
 
 import javax.annotation.processing.Generated;
 import libdirector.domain.Author;
-import libdirector.dto.AuthorDTO;
+import libdirector.domain.dto.AuthorDTO;
 import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-10-15T04:20:02+0200",
-    comments = "version: 1.4.2.Final, compiler: Eclipse JDT (IDE) 1.4.50.v20210914-1429, environment: Java 11.0.15.1 (Oracle Corporation)"
+    date = "2022-10-16T03:59:39+0200",
+    comments = "version: 1.4.2.Final, compiler: javac, environment: Java 17.0.2 (Oracle Corporation)"
 )
 @Component
 public class AuthorMapperImpl implements AuthorMapper {
@@ -21,9 +21,9 @@ public class AuthorMapperImpl implements AuthorMapper {
 
         Author author = new Author();
 
-        author.setBuiltIn( authorDTO.getBuiltIn() );
         author.setId( authorDTO.getId() );
         author.setName( authorDTO.getName() );
+        author.setBuiltIn( authorDTO.getBuiltIn() );
 
         return author;
     }

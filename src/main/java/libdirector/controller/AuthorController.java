@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import libdirector.domain.Author;
-import libdirector.dto.AuthorDTO;
+import libdirector.domain.dto.AuthorDTO;
 import libdirector.service.AuthorService;
 import lombok.AllArgsConstructor;
 

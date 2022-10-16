@@ -1,12 +1,14 @@
-package libdirector.dto;
+package libdirector.domain.dto.request;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,7 +18,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserRegisterDTO {
+public class RegisterRequest {
 
     @Size(min = 2, max = 30, message = "Your first name '${validatedValue}' must be between {min} and {max} chars long")
     @NotNull(message = "Please provide your first name")
@@ -33,8 +35,8 @@ public class UserRegisterDTO {
     @Pattern(regexp = "^[\\+]?[(]?[0-9]{3}[)]?[-\\s\\.]?[0-9]{3}[-\\s\\.]?[0-9]{4,6}$")
     @NotNull(message = "Please provide phone number")
     private String phone;
-
-    @Pattern(regexp = "^\\d{4}\\-(0?[1-9]|1[012])\\-(0?[1-9]|[12][0-9]|3[01])$")
+    
+    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy/MM/dd")
     private Date birthDate;
 
     @Email()
@@ -45,5 +47,7 @@ public class UserRegisterDTO {
     @NotNull(message = "Please provide password")
     private String password;
 
+    @Column(nullable=false)
+	private Boolean builtIn=false;
 
 }

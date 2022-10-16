@@ -1,4 +1,4 @@
-/*package libdirector.exception;
+package libdirector.exception;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -19,10 +19,11 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import com.hillrent.exception.message.ApiResponseError;
+import libdirector.exception.message.ApiResponseError;
+
 
 @ControllerAdvice
-public class HillRentExceptionHandler extends ResponseEntityExceptionHandler {
+public class LibDirectorExceptionHandler extends ResponseEntityExceptionHandler {
 
 	private ResponseEntity<Object> buildResponseEntity(ApiResponseError error) {
 		return new ResponseEntity<>(error, error.getStatus());
@@ -51,7 +52,7 @@ public class HillRentExceptionHandler extends ResponseEntityExceptionHandler {
 
 		return buildResponseEntity(error);
 	}
-
+/*
 	@ExceptionHandler(ImageFileException.class)
 	protected ResponseEntity<Object> handleImageFileException(ImageFileException ex, WebRequest request) {
 		ApiResponseError error = new ApiResponseError(HttpStatus.BAD_REQUEST, ex.getMessage(),
@@ -67,7 +68,7 @@ public class HillRentExceptionHandler extends ResponseEntityExceptionHandler {
 
 		return buildResponseEntity(error);
 	}
-	
+	*/
 	@Override
 	protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
 			HttpHeaders headers, HttpStatus status, WebRequest request) {
@@ -139,4 +140,4 @@ public class HillRentExceptionHandler extends ResponseEntityExceptionHandler {
 	}
 	
 
-}*/
+}

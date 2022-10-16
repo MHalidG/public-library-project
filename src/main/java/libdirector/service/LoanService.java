@@ -3,12 +3,13 @@ package libdirector.service;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import libdirector.domain.Book;
 import libdirector.domain.Loan;
 import libdirector.domain.User;
-import libdirector.dto.LoanDTO;
+import libdirector.domain.dto.LoanDTO;
 import libdirector.dto.mapper.LoanMapper;
 import libdirector.exception.BadRequestException;
 import libdirector.exception.ResourceNotFoundException;
@@ -17,6 +18,7 @@ import libdirector.repository.BookRepository;
 import libdirector.repository.LoanRepository;
 
 @Service
+@AllArgsConstructor
 public class LoanService {
 
 	private BookRepository bookRepository;
@@ -33,6 +35,8 @@ public class LoanService {
 
 		userScoreCheck(loan.getUserLoan());
 
+		//notReturned in time method..
+		
 		loan.setExpireDate(expiredDateSetting(loan.getUserLoan().getScore()));
 
 		Book book = bookRepository.findById(loan.getLoanedBooks().getId())

@@ -1,4 +1,4 @@
-package libdirector.dto;
+package libdirector.domain.dto;
 
 import java.util.ArrayList;
 import java.util.List;
