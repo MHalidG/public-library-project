@@ -7,6 +7,7 @@ import javax.validation.Valid;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,7 +25,8 @@ public class BookController {
     private BookService bookService;
 
 
-    @PostMapping("/add")
+    @PostMapping
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Map<String, String>> createBook(@Valid @RequestBody BookDTO bookDTO)  {
 
         bookService.saveBook(bookDTO);

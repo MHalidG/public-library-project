@@ -22,6 +22,9 @@ public class ErrorMessage {
 
 	public final static String IMAGE_NOT_FOUND_MESSAGE = "ImageFile with id %s not found";
 
+
+	public final static String BOOK_NOT_RETURNED_IN_TIME = "Not returned books jetz 'expireDate-bookId' :  %s  ";
+
 	public final static String LOAN_TIME_INCORRECT_MESSAGE = "Loan time not correct";
 
 	public final static String BOOK_NOT_AVAILABLE_MESSAGE = "This Book is not available : %s ";

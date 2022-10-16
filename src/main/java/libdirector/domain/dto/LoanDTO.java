@@ -21,10 +21,6 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class LoanDTO {
-	@Autowired
-	private BookRepository bookRepository;
-	@Autowired
-	private UserRepository userRepository;
 
 	@NotNull(message = "User can not null")
 	private Long userLoan;
@@ -48,20 +44,6 @@ public class LoanDTO {
 	@Size(max = 300)
 	private String notes;
 
-	private User getUserLoan() {
 
-		User user = userRepository.findById(userLoan).orElseThrow(
-				() -> new ResourceNotFoundException(String.format(ErrorMessage.USER_NOT_FOUND_MESSAGE, userLoan)));
-
-		return user;
-	}
-
-	private Book getLoanedBooks() {
-
-		Book book = bookRepository.findById(loanedBooks).orElseThrow(
-				() -> new ResourceNotFoundException(String.format(ErrorMessage.BOOK_NOT_FOUND_MESSAGE, loanedBooks)));
-
-		return book;
-	}
 
 }

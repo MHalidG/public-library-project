@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -33,7 +34,7 @@ public class Publisher {
 
 	@Column(nullable = false)
 	Boolean builtIn = false;
-
+	@JsonIgnore
 	@OneToMany(mappedBy = "bookPublisher")
 	private List<Book> publisherBooks = new ArrayList<>();
 

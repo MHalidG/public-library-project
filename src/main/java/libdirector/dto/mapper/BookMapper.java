@@ -8,6 +8,6 @@ import libdirector.domain.dto.BookDTO;
 @Mapper(componentModel = "spring")
 public interface BookMapper {
 
-	Book bookDTOToBook(BookDTO bookDTO);
+	//Book bookDTOToBook(BookDTO bookDTO);
 
 }

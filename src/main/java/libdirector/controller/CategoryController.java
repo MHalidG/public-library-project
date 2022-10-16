@@ -4,6 +4,7 @@ import javax.validation.Valid;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,8 +21,8 @@ public class CategoryController {
 
 	private CategoryService categoryService;
 
-	@PostMapping("/add")
-	// TO DO: PreAuthorize()admin eklenecek
+	@PostMapping
+	@PreAuthorize("hasRole('ADMIN')")
 	public ResponseEntity<HttpStatus> saveCategory(@Valid @RequestBody CategoryDTO categoryDTO) {
 
 		categoryService.saveCategory(categoryDTO);

@@ -19,6 +19,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -69,9 +70,10 @@ public class User {
 	@Column(nullable=false)
 	private Boolean builtIn=false;
 
+
+	@JsonIgnore
 	@OneToMany(mappedBy = "userLoan")
 	private List<Loan> userBooks=new ArrayList<>();
-
 
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(

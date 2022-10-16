@@ -1,5 +1,6 @@
 package libdirector.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -28,7 +29,7 @@ public class Category {
 	@Column(nullable = false)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Integer sequence;
-
+	@JsonIgnore
 	@OneToMany(mappedBy = "bookCategory")
 	private List<Book> categoryBooks = new ArrayList<>();
 

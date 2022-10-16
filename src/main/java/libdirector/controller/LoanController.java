@@ -2,8 +2,10 @@ package libdirector.controller;
 
 import javax.validation.Valid;
 
+import libdirector.domain.dto.response.LibResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,10 +24,11 @@ public class LoanController {
 	private LoanService loanService;
 
 	@PostMapping
-	// @PreAuthorize("hasRole('CUSTOMER') or hasRole('ADMIN')")
+	@PreAuthorize("hasRole('ADMIN')")
 	public ResponseEntity<Loan> makeLoan(@Valid @RequestBody LoanDTO loanDTO) {
 
-		return new ResponseEntity<>(loanService.createLoan(loanDTO), HttpStatus.CREATED);
+		Loan loan=loanService.createLoan(loanDTO);
+		return ResponseEntity.ok(loan);
 	}
 
 }

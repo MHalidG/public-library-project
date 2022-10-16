@@ -27,12 +27,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class BookDTO {
 
-	AuthorRepository authorRepository;
 
-	PublisherRepository publisherRepository;
-
-
-	CategoryRepository categoryRepository;
 
 	@Size(min = 2, max = 80, message = "Size is exceeded")
 	@NotNull(message = "Please provide book name")
@@ -66,29 +61,6 @@ public class BookDTO {
 	@NotNull(message = "Please provide featured")
 	private Boolean featured = false;
 
-	public Author getBookAuthor() {
 
-		Author author = authorRepository.findById(bookAuthor).orElseThrow(
-				() -> new ResourceNotFoundException(String.format(ErrorMessage.AUTHOR_NOT_FOUND_MESSAGE, bookAuthor)));
-
-		return author;
-	}
-
-	public Publisher getBookPublisher() {
-
-		Publisher publisher = publisherRepository.findById(bookPublisher)
-				.orElseThrow(() -> new ResourceNotFoundException(
-						String.format(ErrorMessage.PUBLISHER_NOT_FOUND_MESSAGE, bookPublisher)));
-
-		return publisher;
-	}
-
-	public Category getBookCategory() {
-
-		Category category = categoryRepository.findById(bookCategory).orElseThrow(() -> new ResourceNotFoundException(
-				String.format(ErrorMessage.CATEGORY_NOT_FOUND_MESSAGE, bookCategory)));
-
-		return category;
-	}
 
 }

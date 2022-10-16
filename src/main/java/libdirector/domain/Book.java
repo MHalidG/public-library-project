@@ -78,6 +78,7 @@ public class Book {
 	@Column(nullable = false)
 	private Boolean builtIn = false;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "loanedBooks")
 	private List<Loan> loanedBooks = new ArrayList<>();
 

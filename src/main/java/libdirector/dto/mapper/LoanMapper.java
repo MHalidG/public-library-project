@@ -8,6 +8,6 @@ import libdirector.domain.dto.LoanDTO;
 @Mapper(componentModel="spring")
 public interface LoanMapper {
 
-	Loan loanDTOToLoan(LoanDTO loanDTO);
+	//Loan loanDTOToLoan(LoanDTO loanDTO);
 	
 }

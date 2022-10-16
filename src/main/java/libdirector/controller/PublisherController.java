@@ -22,8 +22,8 @@ public class PublisherController {
 
 	private PublisherService publisherService;
 
-	@PostMapping("/add")
-	@PreAuthorize("hasRole('ADMIN') or hasRole('STAFF')")
+	@PostMapping()
+	@PreAuthorize("hasRole('ADMIN')")
 	public ResponseEntity<Publisher> savePublisher(@Valid @RequestBody PublisherDTO publisherDTO) {
 
 		return new ResponseEntity<>(publisherService.savePublisher(publisherDTO), HttpStatus.CREATED);

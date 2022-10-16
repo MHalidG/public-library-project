@@ -2,8 +2,12 @@ package libdirector.service;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
+import java.util.List;
+import java.util.Map;
 
+import libdirector.repository.UserRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import libdirector.domain.Book;
@@ -21,33 +25,55 @@ import libdirector.repository.LoanRepository;
 @AllArgsConstructor
 public class LoanService {
 
+	private UserRepository userRepository;
 	private BookRepository bookRepository;
-	private LoanMapper loanMapper;
 	private LoanRepository loanRepository;
 
 	public Loan createLoan(LoanDTO loanDTO) {
 
-		Loan loan = loanMapper.loanDTOToLoan(loanDTO);
 
-		checkLoanTimeIsCorrect(loan.getLoanDate());
+		Loan loan = new Loan();
 
-		bookIsLoanable(loan.getLoanedBooks());
+		Book book=bookRepository.findById(loanDTO.getLoanedBooks()).
+				orElseThrow(() -> new ResourceNotFoundException(String.format(ErrorMessage.BOOK_NOT_FOUND_MESSAGE, loanDTO.getLoanedBooks())));
+		User user=userRepository.findById(loanDTO.getUserLoan()).
+				orElseThrow(() -> new ResourceNotFoundException(String.format(ErrorMessage.USER_NOT_FOUND_MESSAGE, loanDTO.getUserLoan())));
 
-		userScoreCheck(loan.getUserLoan());
 
-		//notReturned in time method..
-		
+		IsLoanable(book);
+		loan.setLoanedBooks(book);
+
+		checkNotReturnedBook(user);
+		userScoreCheck(user);
+
+		loan.setLoanDate(LocalDateTime.now());
+		loan.setUserLoan(user);
+		loan.setNotes(loanDTO.getNotes());
 		loan.setExpireDate(expiredDateSetting(loan.getUserLoan().getScore()));
 
-		Book book = bookRepository.findById(loan.getLoanedBooks().getId())
-				.orElseThrow(() -> new ResourceNotFoundException(
-						String.format(ErrorMessage.BOOK_NOT_FOUND_MESSAGE, loan.getLoanedBooks().getId())));
 		book.setLoanable(false);
 		bookRepository.save(book);
-		
-		loan.setLoanDate(LocalDateTime.now());
+
 		loanRepository.save(loan);
+
 		return loan;
+	}
+
+	private void checkNotReturnedBook(User userLoan) {
+
+		/*
+		Girdiler
+		userin Id gidecek
+
+		Filtreler
+		son teslim saati gecmis ama today iade edilmemis kitap var mi?
+
+		 */
+		LocalDateTime today=LocalDateTime.now();
+		Map<String,String> bookId=loanRepository.notReturnedInTimeJetz(userLoan.getId(),today);
+		if (bookId.size()>0){
+			throw new ResourceNotFoundException(String.format(ErrorMessage.BOOK_NOT_RETURNED_IN_TIME,bookId.values()));
+		}
 	}
 
 	private LocalDateTime expiredDateSetting(Integer score) {
@@ -89,7 +115,7 @@ public class LoanService {
 		}
 	}
 
-	private void bookIsLoanable(Book loanedBooks) {
+	private void IsLoanable(Book loanedBooks) {
 
 		if (!loanedBooks.getLoanable()) {
 			throw new ResourceNotFoundException(
@@ -97,7 +123,7 @@ public class LoanService {
 		}
 
 	}
-
+/*
 	private void checkLoanTimeIsCorrect(LocalDateTime loanDate) {
 		LocalDateTime now = LocalDateTime.now();
 		boolean isBefore = loanDate.isBefore(now) ? true : false;
@@ -105,5 +131,23 @@ public class LoanService {
 			throw new BadRequestException(ErrorMessage.LOAN_TIME_INCORRECT_MESSAGE);
 		}
 	}
+
+	private User getUserLoan() {
+
+		User user = userRepository.findById(userLoan).orElseThrow(
+				() -> new ResourceNotFoundException(String.format(ErrorMessage.USER_NOT_FOUND_MESSAGE, userLoan)));
+
+		return user;
+	}
+
+	private Book getLoanedBooks() {
+
+		Book book = bookRepository.findById(loanedBooks).orElseThrow(
+				() -> new ResourceNotFoundException(String.format(ErrorMessage.BOOK_NOT_FOUND_MESSAGE, loanedBooks)));
+
+		return book;
+	}
+
+*/
 
 }
