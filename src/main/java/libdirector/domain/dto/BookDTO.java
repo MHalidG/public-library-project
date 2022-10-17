@@ -6,6 +6,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import libdirector.domain.Book;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import libdirector.domain.Author;
@@ -60,7 +61,6 @@ public class BookDTO {
 
 	@NotNull(message = "Please provide featured")
 	private Boolean featured = false;
-
 
 
 }

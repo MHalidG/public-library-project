@@ -5,13 +5,15 @@ import java.util.Map;
 
 import javax.validation.Valid;
 
+import libdirector.domain.Book;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import libdirector.domain.dto.BookDTO;
 import libdirector.service.BookService;
@@ -39,7 +41,20 @@ public class BookController {
 
     }
 
+    @GetMapping
+    public ResponseEntity<Page<Book>> getAllWithPage(@RequestParam String query,
+                                                     @RequestParam("cat") Long cat,
+                                                     @RequestParam("author") Long author,
+                                                     @RequestParam("publisher") Long publisher,
+                                                     @RequestParam("sort") String prop,
+                                                     @RequestParam("page") int page,
+                                                     @RequestParam("size") int size,
+                                                     @RequestParam("direction") Sort.Direction direction) {
+        Pageable pageable = PageRequest.of(size,page,direction,prop);
+        Page<Book> bookPage = bookService.findAllWithPage(pageable,cat,publisher,author,query);
 
+        return ResponseEntity.ok(bookPage);
+    }
 
 
 
