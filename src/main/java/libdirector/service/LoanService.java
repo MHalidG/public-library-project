@@ -95,24 +95,24 @@ public class LoanService {
 	}
 
 	private void userScoreCheck(User user) {
-		int kitapSayisi = user.getUserBooks().size();
-
-		if (user.getScore() == 0 && kitapSayisi >= 3) {
-			throw new ResourceNotFoundException(
-					String.format(ErrorMessage.USER_SCORE_NOT_ENOUGH_MESSAGE, user.getScore()));
-		} else if (user.getScore() == 1 && kitapSayisi >= 4) {
-			throw new ResourceNotFoundException(
-					String.format(ErrorMessage.USER_SCORE_NOT_ENOUGH_MESSAGE, user.getScore()));
-		} else if (user.getScore() == 2 && kitapSayisi >= 5) {
-			throw new ResourceNotFoundException(
-					String.format(ErrorMessage.USER_SCORE_NOT_ENOUGH_MESSAGE, user.getScore()));
-		} else if (user.getScore() == -1 && kitapSayisi >= 2) {
-			throw new ResourceNotFoundException(
-					String.format(ErrorMessage.USER_SCORE_NOT_ENOUGH_MESSAGE, user.getScore()));
-		} else if (user.getScore() == -2 && kitapSayisi >= 1) {
-			throw new ResourceNotFoundException(
-					String.format(ErrorMessage.USER_SCORE_NOT_ENOUGH_MESSAGE, user.getScore()));
+		int kS = user.getUserBooks().size();
+		int uS=user.getScore();
+		if (uS == 0 && kS >= 3) {
+			kM(uS);
+		} else if (uS == 1 && kS >= 4) {
+			kM(uS);
+		} else if (uS == 2 && kS >= 5) {
+			kM(uS);
+		} else if (uS == -1 && kS >= 2) {
+			kM(uS);
+		} else if (uS == -2 && kS >= 1) {
+			kM(uS);
+		}else if(uS == -2 && kS >= 1){
 		}
+	}
+	void kM(Integer score){
+		throw new ResourceNotFoundException(
+				String.format(ErrorMessage.USER_SCORE_NOT_ENOUGH_MESSAGE, score));
 	}
 
 	private void IsLoanable(Book loanedBooks) {
