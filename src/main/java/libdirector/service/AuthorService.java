@@ -25,6 +25,12 @@ public class AuthorService {
 
     }
 
+    public AuthorDTO deleteAuthor(AuthorDTO authorDTO){
+
+        authorRepository.deleteById(authorDTO.getId());
+
+     return authorDTO;
+    }
     
     
     
