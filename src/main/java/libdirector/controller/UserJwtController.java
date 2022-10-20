@@ -12,11 +12,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import libdirector.domain.dto.request.RegisterRequest;
-import libdirector.domain.dto.request.LoginRequest;
-import libdirector.domain.dto.response.LibResponse;
-import libdirector.domain.dto.response.LoginResponse;
-import libdirector.domain.dto.response.ResponseMessage;
+import libdirector.domain.requestdto.request.RegisterRequest;
+import libdirector.domain.requestdto.request.LoginRequest;
+import libdirector.domain.responsedto.response.LibResponse;
+import libdirector.domain.responsedto.response.LoginResponse;
+import libdirector.domain.responsedto.response.ResponseMessage;
 import libdirector.security.jwt.JwtUtils;
 import libdirector.service.UserService;
 import lombok.AllArgsConstructor;

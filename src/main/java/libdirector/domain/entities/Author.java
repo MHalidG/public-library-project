@@ -1,5 +1,4 @@
-package libdirector.domain;
-
+package libdirector.domain.entities;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,25 +16,27 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity
-@Table(name = "tbl_publishers")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Publisher {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+@Entity
+@Table(name = "tbl_authors")
+public class Author {
+	
+    @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    private Long id;
 
-	@Column(length = 50, nullable = false)
-	private String name;
+    @Column(nullable = false)
+    private String name;
 
-	@Column(nullable = false)
-	Boolean builtIn = false;
-	@JsonIgnore
-	@OneToMany(mappedBy = "bookPublisher")
-	private List<Book> publisherBooks = new ArrayList<>();
+    @Column(nullable = false)
+    private Boolean builtIn=false;
+    @JsonIgnore
+    @OneToMany(mappedBy = "bookAuthor")
+    private List<Book> authorBooks=new ArrayList<>();
 
+	
 }

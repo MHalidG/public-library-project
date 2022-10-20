@@ -11,7 +11,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import libdirector.domain.User;
+import libdirector.domain.entities.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;

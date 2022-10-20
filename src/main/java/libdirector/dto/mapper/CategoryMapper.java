@@ -2,8 +2,8 @@ package libdirector.dto.mapper;
 
 import org.mapstruct.Mapper;
 
-import libdirector.domain.Category;
-import libdirector.domain.dto.CategoryDTO;
+import libdirector.domain.entities.Category;
+import libdirector.domain.requestdto.CategoryDTO;
 
 @Mapper(componentModel="spring")
 public interface CategoryMapper {

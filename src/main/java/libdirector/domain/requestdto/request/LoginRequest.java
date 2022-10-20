@@ -1,4 +1,4 @@
-package libdirector.domain.dto.request;
+package libdirector.domain.requestdto.request;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;

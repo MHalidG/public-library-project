@@ -1,8 +1,8 @@
 package libdirector.dto.mapper;
 
 import javax.annotation.processing.Generated;
-import libdirector.domain.Publisher;
-import libdirector.domain.dto.PublisherDTO;
+import libdirector.domain.entities.Publisher;
+import libdirector.domain.requestdto.PublisherDTO;
 import org.springframework.stereotype.Component;
 
 @Generated(

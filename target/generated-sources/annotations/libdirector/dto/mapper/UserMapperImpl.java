@@ -7,10 +7,10 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import javax.annotation.processing.Generated;
-import libdirector.domain.Role;
-import libdirector.domain.User;
-import libdirector.domain.dto.UserDTO;
-import libdirector.domain.dto.request.RegisterRequest;
+import libdirector.domain.entities.Role;
+import libdirector.domain.entities.User;
+import libdirector.domain.requestdto.UserDTO;
+import libdirector.domain.requestdto.request.RegisterRequest;
 import org.springframework.stereotype.Component;
 
 @Generated(

@@ -1,4 +1,4 @@
-package libdirector.domain.dto;
+package libdirector.domain.requestdto;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;

@@ -1,6 +1,6 @@
 /*package libdirector.controller;
 
-import libdirector.domain.Role;
+import libdirector.domain.entities.Role;
 import libdirector.domain.dto.RoleDTO;
 import libdirector.repository.RoleRepository;
 import libdirector.service.RoleService;

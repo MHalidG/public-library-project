@@ -2,8 +2,8 @@ package libdirector.dto.mapper;
 
 import org.mapstruct.Mapper;
 
-import libdirector.domain.Publisher;
-import libdirector.domain.dto.PublisherDTO;
+import libdirector.domain.entities.Publisher;
+import libdirector.domain.requestdto.PublisherDTO;
 
 @Mapper(componentModel = "spring")
 public interface PublisherMapper {

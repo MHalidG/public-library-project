@@ -1,4 +1,4 @@
-package libdirector.domain.dto.response;
+package libdirector.domain.responsedto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -2,9 +2,6 @@ package libdirector.dto.mapper;
 
 import org.mapstruct.Mapper;
 
-import libdirector.domain.Loan;
-import libdirector.domain.dto.LoanDTO;
-
 @Mapper(componentModel="spring")
 public interface LoanMapper {
 

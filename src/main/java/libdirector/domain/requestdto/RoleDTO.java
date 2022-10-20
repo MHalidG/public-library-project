@@ -1,4 +1,4 @@
-package libdirector.domain.dto;
+package libdirector.domain.requestdto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

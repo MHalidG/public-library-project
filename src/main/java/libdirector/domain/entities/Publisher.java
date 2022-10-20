@@ -1,8 +1,7 @@
-package libdirector.domain;
+package libdirector.domain.entities;
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,33 +12,30 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import libdirector.repository.BookRepository;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+@Entity
+@Table(name = "tbl_publishers")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+public class Publisher {
 
-@Entity
-@Table(name = "tbl_authors")
-public class Author {
-	
-    @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
 
-    @Column(nullable = false)
-    private String name;
+	@Column(length = 50, nullable = false)
+	private String name;
 
-    @Column(nullable = false)
-    private Boolean builtIn=false;
-    @JsonIgnore
-    @OneToMany(mappedBy = "bookAuthor")
-    private List<Book> authorBooks=new ArrayList<>();
+	@Column(nullable = false)
+	Boolean builtIn = false;
+	@JsonIgnore
+	@OneToMany(mappedBy = "bookPublisher")
+	private List<Book> publisherBooks = new ArrayList<>();
 
-	
 }

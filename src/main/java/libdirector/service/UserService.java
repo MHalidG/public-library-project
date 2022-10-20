@@ -6,13 +6,13 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import libdirector.domain.dto.UserDTO;
+import libdirector.domain.requestdto.UserDTO;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import libdirector.domain.Role;
-import libdirector.domain.User;
-import libdirector.domain.dto.request.RegisterRequest;
+import libdirector.domain.entities.Role;
+import libdirector.domain.entities.User;
+import libdirector.domain.requestdto.request.RegisterRequest;
 import libdirector.domain.enums.RoleType;
 import libdirector.dto.mapper.UserMapper;
 import libdirector.exception.ConflictException;

@@ -1,4 +1,4 @@
-package libdirector.domain.dto;
+package libdirector.domain.requestdto;
 
 import java.io.File;
 
@@ -6,17 +6,6 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
-import libdirector.domain.Book;
-import org.springframework.beans.factory.annotation.Autowired;
-
-import libdirector.domain.Author;
-import libdirector.domain.Category;
-import libdirector.domain.Publisher;
-import libdirector.exception.ResourceNotFoundException;
-import libdirector.exception.message.ErrorMessage;
-import libdirector.repository.AuthorRepository;
-import libdirector.repository.CategoryRepository;
-import libdirector.repository.PublisherRepository;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

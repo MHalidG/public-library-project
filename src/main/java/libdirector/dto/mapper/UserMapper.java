@@ -1,10 +1,10 @@
 package libdirector.dto.mapper;
 
-import libdirector.domain.dto.UserDTO;
+import libdirector.domain.requestdto.UserDTO;
 import org.mapstruct.Mapper;
 
-import libdirector.domain.User;
-import libdirector.domain.dto.request.RegisterRequest;
+import libdirector.domain.entities.User;
+import libdirector.domain.requestdto.request.RegisterRequest;
 
 import java.util.List;
 

@@ -2,8 +2,8 @@ package libdirector.service;
 
 import org.springframework.stereotype.Service;
 
-import libdirector.domain.Publisher;
-import libdirector.domain.dto.PublisherDTO;
+import libdirector.domain.entities.Publisher;
+import libdirector.domain.requestdto.PublisherDTO;
 import libdirector.dto.mapper.PublisherMapper;
 import libdirector.repository.PublisherRepository;
 import lombok.AllArgsConstructor;

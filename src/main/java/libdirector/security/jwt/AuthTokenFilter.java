@@ -17,7 +17,7 @@ import org.springframework.util.AntPathMatcher;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import libdirector.domain.User;
+import libdirector.domain.entities.User;
 import libdirector.repository.UserRepository;
 
 public class AuthTokenFilter extends OncePerRequestFilter{

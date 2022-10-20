@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import libdirector.domain.Category;
-import libdirector.domain.dto.CategoryDTO;
+import libdirector.domain.entities.Category;
+import libdirector.domain.requestdto.CategoryDTO;
 import libdirector.dto.mapper.CategoryMapper;
 import libdirector.repository.CategoryRepository;
 import lombok.AllArgsConstructor;

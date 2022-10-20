@@ -1,14 +1,8 @@
-package libdirector.domain.dto;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
+package libdirector.domain.requestdto;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import libdirector.domain.Book;
-import libdirector.repository.BookRepository;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

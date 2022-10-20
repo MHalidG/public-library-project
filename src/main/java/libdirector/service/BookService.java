@@ -9,13 +9,12 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import libdirector.domain.Book;
-import libdirector.domain.dto.BookDTO;
+import libdirector.domain.entities.Book;
+import libdirector.domain.requestdto.BookDTO;
 import libdirector.repository.BookRepository;
 import lombok.AllArgsConstructor;
 
 import java.time.LocalDateTime;
-import java.util.Map;
 
 @Service
 @AllArgsConstructor

@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import libdirector.domain.Publisher;
-import libdirector.domain.dto.PublisherDTO;
+import libdirector.domain.entities.Publisher;
+import libdirector.domain.requestdto.PublisherDTO;
 import libdirector.service.PublisherService;
 import lombok.AllArgsConstructor;
 

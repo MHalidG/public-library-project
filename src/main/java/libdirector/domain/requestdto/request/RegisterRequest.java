@@ -1,4 +1,4 @@
-package libdirector.domain.dto.request;
+package libdirector.domain.requestdto.request;
 
 import java.util.Date;
 

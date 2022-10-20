@@ -1,4 +1,4 @@
-package libdirector.domain;
+package libdirector.domain.entities;
 
 
 import javax.persistence.Column;

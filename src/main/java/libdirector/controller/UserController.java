@@ -1,6 +1,6 @@
 package libdirector.controller;
 
-import libdirector.domain.dto.UserDTO;
+import libdirector.domain.requestdto.UserDTO;
 import libdirector.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;

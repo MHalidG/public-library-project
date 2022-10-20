@@ -2,20 +2,16 @@ package libdirector.service;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
-import java.util.List;
 import java.util.Map;
 
 import libdirector.repository.UserRepository;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import libdirector.domain.Book;
-import libdirector.domain.Loan;
-import libdirector.domain.User;
-import libdirector.domain.dto.LoanDTO;
-import libdirector.dto.mapper.LoanMapper;
-import libdirector.exception.BadRequestException;
+import libdirector.domain.entities.Book;
+import libdirector.domain.entities.Loan;
+import libdirector.domain.entities.User;
+import libdirector.domain.requestdto.LoanDTO;
 import libdirector.exception.ResourceNotFoundException;
 import libdirector.exception.message.ErrorMessage;
 import libdirector.repository.BookRepository;

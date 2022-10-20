@@ -1,8 +1,8 @@
 package libdirector.dto.mapper;
 
 import javax.annotation.processing.Generated;
-import libdirector.domain.Category;
-import libdirector.domain.dto.CategoryDTO;
+import libdirector.domain.entities.Category;
+import libdirector.domain.requestdto.CategoryDTO;
 import org.springframework.stereotype.Component;
 
 @Generated(

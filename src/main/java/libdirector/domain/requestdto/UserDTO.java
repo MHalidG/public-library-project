@@ -1,14 +1,12 @@
-package libdirector.domain.dto;
+package libdirector.domain.requestdto;
 
-import libdirector.domain.Role;
-import libdirector.domain.enums.RoleType;
+import libdirector.domain.entities.Role;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
-import java.util.HashSet;
 import java.util.Set;
 @Getter
 @Setter
