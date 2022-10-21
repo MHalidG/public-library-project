@@ -2,16 +2,13 @@ package libdirector.controller;
 
 import javax.validation.Valid;
 
+import libdirector.domain.requestdto.AuthorSaveDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import libdirector.domain.entities.Author;
-import libdirector.domain.requestdto.AuthorDTO;
 import libdirector.service.AuthorService;
 import lombok.AllArgsConstructor;
 
@@ -26,9 +23,15 @@ public class AuthorController {
 
     @PostMapping
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<Author> saveAuthor(@Valid @RequestBody AuthorDTO authorDTO) {
+    public ResponseEntity<Author> saveAuthor(@Valid @RequestBody AuthorSaveDTO authorDTO) {
 
         return new ResponseEntity<>(authorService.saveAuthor(authorDTO),HttpStatus.CREATED);
 
     }
+/*
+    @GetMapping("/{id}")
+    public ResponseEntity<>
+*/
+
+
 }

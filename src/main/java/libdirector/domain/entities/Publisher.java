@@ -26,16 +26,17 @@ import lombok.Setter;
 public class Publisher {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long id;
 
-	@Column(length = 50, nullable = false)
+	@Column(nullable = false)
 	private String name;
 
 	@Column(nullable = false)
 	Boolean builtIn = false;
+
 	@JsonIgnore
-	@OneToMany(mappedBy = "bookPublisher")
+	@OneToMany(mappedBy = "publisherId")
 	private List<Book> publisherBooks = new ArrayList<>();
 
 }

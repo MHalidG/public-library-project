@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import libdirector.domain.requestdto.CategoryDTO;
+import libdirector.domain.requestdto.CategorySaveDTO;
 import libdirector.service.CategoryService;
 import lombok.AllArgsConstructor;
 
@@ -23,7 +23,7 @@ public class CategoryController {
 
 	@PostMapping
 	@PreAuthorize("hasRole('ADMIN')")
-	public ResponseEntity<HttpStatus> saveCategory(@Valid @RequestBody CategoryDTO categoryDTO) {
+	public ResponseEntity<HttpStatus> saveCategory(@Valid @RequestBody CategorySaveDTO categoryDTO) {
 
 		categoryService.saveCategory(categoryDTO);
 		return new ResponseEntity<>(HttpStatus.CREATED);

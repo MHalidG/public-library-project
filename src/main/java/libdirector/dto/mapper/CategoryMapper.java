@@ -3,11 +3,11 @@ package libdirector.dto.mapper;
 import org.mapstruct.Mapper;
 
 import libdirector.domain.entities.Category;
-import libdirector.domain.requestdto.CategoryDTO;
+import libdirector.domain.requestdto.CategorySaveDTO;
 
 @Mapper(componentModel="spring")
 public interface CategoryMapper {
 
-	Category CategoryDTOToCategory(CategoryDTO categoryDTO);
+	Category CategoryDTOToCategory(CategorySaveDTO categoryDTO);
 	
 }

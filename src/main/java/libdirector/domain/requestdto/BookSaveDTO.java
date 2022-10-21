@@ -1,6 +1,6 @@
 package libdirector.domain.requestdto;
 
-import java.io.File;
+import java.util.Set;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -15,9 +15,10 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class BookDTO {
+public class BookSaveDTO {
 
 
+	private Long id;
 
 	@Size(min = 2, max = 80, message = "Size is exceeded")
 	@NotNull(message = "Please provide book name")
@@ -31,25 +32,32 @@ public class BookDTO {
 	private Integer pageCount;
 
 	@NotNull(message = "Please provide a Author id")
-	private Long bookAuthor;
+	private Long authorId;
 
 	@NotNull(message = "Please provide a Publichser id")
-	private Long bookPublisher;
+	private Long publisherId;
 
+	@Pattern(regexp = "^\\d{4}", message="(Just enter the year it was published)")
 	private Integer publishDate;
 
 	@NotNull(message = "Please provide A Category id")
-	private Long bookCategory;
+	private Long categoryId;
 
-	private File image;
+	private Boolean loanable=true;
+
+	private Boolean active=true;
+
+	private Boolean featured=false;
+
+	private Set<String> image;
 
 	@NotNull(message = "Please provide shelf Code")
 	@Size(min = 6, max = 6)
 	@Pattern(regexp = "^[A-Z]{2}-\\d{3}$", message = "Please provide a valid shelf Code")
 	private String shelfCode;
 
-	@NotNull(message = "Please provide featured")
-	private Boolean featured = false;
+	private Boolean builtIn=false;
+
 
 
 }

@@ -72,7 +72,7 @@ public class User {
 
 
 	@JsonIgnore
-	@OneToMany(mappedBy = "userLoan")
+	@OneToMany(mappedBy = "userId")
 	private List<Loan> userBooks=new ArrayList<>();
 
 	@ManyToMany(fetch = FetchType.EAGER)

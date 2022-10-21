@@ -26,16 +26,16 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Loan {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long id;
 	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "userId", nullable = false)
-	private User userLoan;
+	private User userId;
 	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "bookId", nullable = false)
-	private Book loanedBooks;
+	private Book bookId;
 
 	@Column(nullable = false)
 	private LocalDateTime loanDate;

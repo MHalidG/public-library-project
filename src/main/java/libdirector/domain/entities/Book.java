@@ -1,18 +1,16 @@
 package libdirector.domain.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import java.io.File;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -23,13 +21,13 @@ import java.util.List;
 public class Book {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long id;
 
-	@Column(length = 80, nullable = false)
+	@Column(nullable = false)
 	private String name;
 
-	@Column(length = 17, nullable = false)
+	@Column(nullable = false)
 	private String isbn;
 
 	@Column
@@ -37,31 +35,28 @@ public class Book {
 
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "authorId", nullable = false)
-	private Author bookAuthor;
+	private Author authorId;
 
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "publisherId", nullable = false)
-	private Publisher bookPublisher;
+	private Publisher publisherId;
 
 	@Column
 	private Integer publishDate;
 
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "categoryId", nullable = false)
-	private Category bookCategory;
+	private Category categoryId;
 
-	@Column
-	private File image;
-	/*
-	@JsonIgnore
-	@Lob
-	//@Lob= Image LockObject annot ile belirtilir.
-	private byte[] data;
-*/
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "tbl_book_image", joinColumns = @JoinColumn(name = "book_id"), inverseJoinColumns = @JoinColumn(name = "imfile_id"))
+	private Set<ImageFile> image;
+
+
 	@Column(nullable = false)
 	private Boolean loanable = true;
 
-	@Column(length = 6, nullable = false)
+	@Column(nullable = false)
 	private String shelfCode;
 
 	@Column(nullable = false)
@@ -77,7 +72,7 @@ public class Book {
 	private Boolean builtIn = false;
 
 	@JsonIgnore
-	@OneToMany(mappedBy = "loanedBooks")
+	@OneToMany(mappedBy = "bookId")
 	private List<Loan> loanedBooks = new ArrayList<>();
 
 }

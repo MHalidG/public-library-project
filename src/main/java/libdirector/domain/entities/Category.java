@@ -17,7 +17,7 @@ import java.util.List;
 public class Category {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long id;
 
 	@Column(nullable = false, length = 80)
@@ -27,10 +27,12 @@ public class Category {
 	private Boolean builtIn = false;
 
 	@Column(nullable = false)
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-	private Integer sequence;
+	@OneToOne
+	@JoinTable(name = "tbl_category_sequence", joinColumns = @JoinColumn(name = "category_sequence"), inverseJoinColumns = @JoinColumn(name = "sequence"))
+	private CategorySequence sequence;
+
 	@JsonIgnore
-	@OneToMany(mappedBy = "bookCategory")
+	@OneToMany(mappedBy = "categoryId")
 	private List<Book> categoryBooks = new ArrayList<>();
 
 }

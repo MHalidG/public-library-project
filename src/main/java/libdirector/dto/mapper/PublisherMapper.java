@@ -3,11 +3,11 @@ package libdirector.dto.mapper;
 import org.mapstruct.Mapper;
 
 import libdirector.domain.entities.Publisher;
-import libdirector.domain.requestdto.PublisherDTO;
+import libdirector.domain.requestdto.PublisherSaveDTO;
 
 @Mapper(componentModel = "spring")
 public interface PublisherMapper {
 
-	Publisher publisherDTOToPublisher(PublisherDTO publisherDTO);
+	Publisher publisherDTOToPublisher(PublisherSaveDTO publisherDTO);
 
 }

@@ -2,7 +2,7 @@ package libdirector.dto.mapper;
 
 import javax.annotation.processing.Generated;
 import libdirector.domain.entities.Category;
-import libdirector.domain.requestdto.CategoryDTO;
+import libdirector.domain.requestdto.CategorySaveDTO;
 import org.springframework.stereotype.Component;
 
 @Generated(
@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 public class CategoryMapperImpl implements CategoryMapper {
 
     @Override
-    public Category CategoryDTOToCategory(CategoryDTO categoryDTO) {
+    public Category CategoryDTOToCategory(CategorySaveDTO categoryDTO) {
         if ( categoryDTO == null ) {
             return null;
         }

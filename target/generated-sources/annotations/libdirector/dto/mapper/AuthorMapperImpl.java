@@ -2,7 +2,7 @@ package libdirector.dto.mapper;
 
 import javax.annotation.processing.Generated;
 import libdirector.domain.entities.Author;
-import libdirector.domain.requestdto.AuthorDTO;
+import libdirector.domain.requestdto.AuthorSaveDTO;
 import org.springframework.stereotype.Component;
 
 @Generated(
@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 public class AuthorMapperImpl implements AuthorMapper {
 
     @Override
-    public Author authorDTOToAuthor(AuthorDTO authorDTO) {
+    public Author authorDTOToAuthor(AuthorSaveDTO authorDTO) {
         if ( authorDTO == null ) {
             return null;
         }

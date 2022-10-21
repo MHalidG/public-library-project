@@ -2,6 +2,7 @@ package libdirector.controller;
 
 import javax.validation.Valid;
 
+import libdirector.domain.requestdto.PublisherSaveDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -11,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import libdirector.domain.entities.Publisher;
-import libdirector.domain.requestdto.PublisherDTO;
 import libdirector.service.PublisherService;
 import lombok.AllArgsConstructor;
 
@@ -24,7 +24,7 @@ public class PublisherController {
 
 	@PostMapping()
 	@PreAuthorize("hasRole('ADMIN')")
-	public ResponseEntity<Publisher> savePublisher(@Valid @RequestBody PublisherDTO publisherDTO) {
+	public ResponseEntity<Publisher> savePublisher(@Valid @RequestBody PublisherSaveDTO publisherDTO) {
 
 		return new ResponseEntity<>(publisherService.savePublisher(publisherDTO), HttpStatus.CREATED);
 

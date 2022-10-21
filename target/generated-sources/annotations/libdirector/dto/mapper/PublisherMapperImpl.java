@@ -2,7 +2,7 @@ package libdirector.dto.mapper;
 
 import javax.annotation.processing.Generated;
 import libdirector.domain.entities.Publisher;
-import libdirector.domain.requestdto.PublisherDTO;
+import libdirector.domain.requestdto.PublisherSaveDTO;
 import org.springframework.stereotype.Component;
 
 @Generated(
@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 public class PublisherMapperImpl implements PublisherMapper {
 
     @Override
-    public Publisher publisherDTOToPublisher(PublisherDTO publisherDTO) {
+    public Publisher publisherDTOToPublisher(PublisherSaveDTO publisherDTO) {
         if ( publisherDTO == null ) {
             return null;
         }

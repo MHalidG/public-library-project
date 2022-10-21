@@ -3,7 +3,7 @@ package libdirector.service;
 import org.springframework.stereotype.Service;
 
 import libdirector.domain.entities.Author;
-import libdirector.domain.requestdto.AuthorDTO;
+import libdirector.domain.requestdto.AuthorSaveDTO;
 import libdirector.dto.mapper.AuthorMapper;
 import libdirector.repository.AuthorRepository;
 import lombok.AllArgsConstructor;
@@ -18,14 +18,14 @@ public class AuthorService {
 
     
     //@Transactional(readOnly=true)
-    public Author saveAuthor(AuthorDTO authorDTO){
+    public Author saveAuthor(AuthorSaveDTO authorDTO){
         Author author= authorMapper.authorDTOToAuthor(authorDTO);
         authorRepository.save(author);
         return author;
 
     }
 
-    public AuthorDTO deleteAuthor(AuthorDTO authorDTO){
+    public AuthorSaveDTO deleteAuthor(AuthorSaveDTO authorDTO){
 
         authorRepository.deleteById(authorDTO.getId());
 

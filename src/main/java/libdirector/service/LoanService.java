@@ -37,15 +37,15 @@ public class LoanService {
 
 
 		IsLoanable(book);
-		loan.setLoanedBooks(book);
+		loan.setBookId(book);
 
 		checkNotReturnedBook(user);
 		userScoreCheck(user);
 
 		loan.setLoanDate(LocalDateTime.now());
-		loan.setUserLoan(user);
+		loan.setUserId(user);
 		loan.setNotes(loanDTO.getNotes());
-		loan.setExpireDate(expiredDateSetting(loan.getUserLoan().getScore()));
+		loan.setExpireDate(expiredDateSetting(loan.getUserId().getScore()));
 
 		book.setLoanable(false);
 		bookRepository.save(book);

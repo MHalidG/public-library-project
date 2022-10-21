@@ -15,7 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import libdirector.domain.requestdto.BookDTO;
+import libdirector.domain.requestdto.BookSaveDTO;
 import libdirector.service.BookService;
 import lombok.AllArgsConstructor;
 
@@ -29,7 +29,7 @@ public class BookController {
 
     @PostMapping
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<Map<String, String>> createBook(@Valid @RequestBody BookDTO bookDTO)  {
+    public ResponseEntity<Map<String, String>> createBook(@Valid @RequestBody BookSaveDTO bookDTO)  {
 
         bookService.saveBook(bookDTO);
 
@@ -49,7 +49,7 @@ public class BookController {
                                                      @RequestParam("sort") String prop,
                                                      @RequestParam("page") int page,
                                                      @RequestParam("size") int size,
-                                                     @RequestParam("direction") Sort.Direction direction) {
+                                                     @RequestParam("direction") Sort.Direction direction) {                                   
         Pageable pageable = PageRequest.of(size,page,direction,prop);
         Page<Book> bookPage = bookService.findAllWithPage(pageable,cat,publisher,author,query);
 

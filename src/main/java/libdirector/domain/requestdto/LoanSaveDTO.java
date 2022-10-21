@@ -12,7 +12,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class LoanDTO {
+public class LoanSaveDTO {
 
 	@NotNull(message = "User can not null")
 	private Long userLoan;

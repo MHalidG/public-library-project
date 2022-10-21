@@ -26,7 +26,7 @@ import lombok.Setter;
 public class Author {
 	
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.SEQUENCE)//Defaultu AUTOdur
     private Long id;
 
     @Column(nullable = false)
@@ -35,7 +35,7 @@ public class Author {
     @Column(nullable = false)
     private Boolean builtIn=false;
     @JsonIgnore
-    @OneToMany(mappedBy = "bookAuthor")
+    @OneToMany(mappedBy = "authorId")
     private List<Book> authorBooks=new ArrayList<>();
 
 	

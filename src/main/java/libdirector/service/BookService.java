@@ -10,7 +10,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import libdirector.domain.entities.Book;
-import libdirector.domain.requestdto.BookDTO;
+import libdirector.domain.requestdto.BookSaveDTO;
 import libdirector.repository.BookRepository;
 import lombok.AllArgsConstructor;
 
@@ -27,14 +27,14 @@ public class BookService {
 	private CategoryRepository categoryRepository;
 	private BookRepository bookRepository;
 
-	public Book saveBook(BookDTO bookDTO) {
+	public Book saveBook(BookSaveDTO bookDTO) {
 		Book book = new Book();
 		book.setCreateDate(LocalDateTime.now());
-		book.setBookAuthor(authorRepository.findById(bookDTO.getBookAuthor()).orElseThrow(
+		book.setAuthorId(authorRepository.findById(bookDTO.getBookAuthor()).orElseThrow(
 				() -> new ResourceNotFoundException(String.format(ErrorMessage.AUTHOR_NOT_FOUND_MESSAGE, bookDTO.getBookAuthor()))));
 
-		book.setBookCategory(categoryRepository.findById(bookDTO.getBookCategory()).orElseThrow(() -> new ResourceNotFoundException(
-				String.format(ErrorMessage.CATEGORY_NOT_FOUND_MESSAGE, bookDTO.getBookCategory()))));
+		book.setCategoryId(categoryRepository.findById(bookDTO.getCategoryId()).orElseThrow(() -> new ResourceNotFoundException(
+				String.format(ErrorMessage.CATEGORY_NOT_FOUND_MESSAGE, bookDTO.getCategoryId()))));
 
 		book.setBookPublisher( publisherRepository.findById(bookDTO.getBookPublisher())
 				.orElseThrow(() -> new ResourceNotFoundException(

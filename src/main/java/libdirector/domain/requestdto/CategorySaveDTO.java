@@ -12,17 +12,16 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class PublisherDTO {
+public class CategorySaveDTO {
 
 	private Long id;
 
-    @NotNull(message = "Please provide Publisher Name")
-    @Size(min=2,max=50,message="Publisher Name '${validatedValue}' must be between {min} and {max} chars long")
-    private String name;
+	@NotNull(message = "Please Provide Category Name")
+	@Size(min = 2, max = 80, message = "Category Name '${validatedValue}' must be between {min} and {max} chars long")
+	private String name;
 
-    @NotNull(message="Please provide BuiltIn")
-    Boolean builtIn =false;
-
+	@NotNull(message = "Please provide BuiltIn")
+	private Boolean builtIn = false;
 
 
 }
