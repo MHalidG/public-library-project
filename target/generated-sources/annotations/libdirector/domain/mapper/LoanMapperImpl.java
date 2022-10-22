@@ -1,4 +1,4 @@
-package libdirector.dto.mapper;
+package libdirector.domain.mapper;
 
 import javax.annotation.processing.Generated;
 import org.springframework.stereotype.Component;
@@ -9,5 +9,5 @@ import org.springframework.stereotype.Component;
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 17.0.2 (Oracle Corporation)"
 )
 @Component
-public class BookMapperImpl implements BookMapper {
+public class LoanMapperImpl implements LoanMapper {
 }

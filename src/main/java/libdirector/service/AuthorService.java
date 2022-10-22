@@ -1,10 +1,13 @@
 package libdirector.service;
 
+import libdirector.exception.message.ErrorMessage;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import libdirector.domain.entities.Author;
 import libdirector.domain.requestdto.AuthorSaveDTO;
-import libdirector.dto.mapper.AuthorMapper;
+import libdirector.domain.mapper.AuthorMapper;
 import libdirector.repository.AuthorRepository;
 import lombok.AllArgsConstructor;
 
@@ -16,27 +19,47 @@ public class AuthorService {
 	
     private AuthorRepository authorRepository;
 
-    
-    //@Transactional(readOnly=true)
-    public Author saveAuthor(AuthorSaveDTO authorDTO){
-        Author author= authorMapper.authorDTOToAuthor(authorDTO);
+    public Author saveAuthor(AuthorSaveDTO authorSaveDTO){
+        Author author= authorMapper.authorDTOToAuthor(authorSaveDTO);
         authorRepository.save(author);
         return author;
-
     }
 
-    public AuthorSaveDTO deleteAuthor(AuthorSaveDTO authorDTO){
+    public Author deleteAuthor(Long id){
+        Author author=authorRepository.findById(id).orElseThrow(()-> new RuntimeException(String.format(ErrorMessage.AUTHOR_NOT_FOUND_MESSAGE)));
+        if (!author.getAuthorBooks().isEmpty()) {
+            throw new RuntimeException(String.format(ErrorMessage.AUTHOR_HAS_RELATION));
+        }
+        authorRepository.deleteById(author.getId());
 
-        authorRepository.deleteById(authorDTO.getId());
-
-     return authorDTO;
+     return author;
     }
     
     
     
-    public Author getAuthorById(Long id) {
+    public AuthorSaveDTO getAuthorById(Long id, AuthorSaveDTO authorSaveDTO) {
 
-        return authorRepository.findById(id).orElseThrow(()-> new RuntimeException("No Found"));
+         Author author =authorRepository.findById(id).orElseThrow(()-> new RuntimeException(String.format(ErrorMessage.AUTHOR_NOT_FOUND_MESSAGE)));
+         authorSaveDTO.setName(author.getName());
+         authorSaveDTO.setId(author.getId());
+         return authorSaveDTO;
+    }
 
+
+
+
+    public Author updateAuthor(AuthorSaveDTO authorSaveDTO,Long id) {
+        Author updatingAuthor=authorRepository.findById(id).orElseThrow(()-> new
+                RuntimeException(String.format(ErrorMessage.AUTHOR_NOT_FOUND_MESSAGE)));
+        updatingAuthor.setName(authorSaveDTO.getName());
+        authorRepository.save(updatingAuthor);
+        return updatingAuthor;
+    }
+
+
+    public Page<AuthorSaveDTO> getAuthorsPage(Pageable pageable) {
+            Page<AuthorSaveDTO> authors = authorRepository.findAllAuthorsWithPage(pageable);
+
+            return authors;
     }
 }

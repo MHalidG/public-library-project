@@ -1,6 +1,8 @@
-package libdirector.domain.requestdto.request;
+package libdirector.domain.requestdto;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.validation.constraints.Email;
@@ -9,6 +11,7 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import libdirector.domain.entities.Role;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,6 +22,8 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class RegisterRequest {
+
+    private Long id;
 
     @Size(min = 2, max = 30, message = "Your first name '${validatedValue}' must be between {min} and {max} chars long")
     @NotNull(message = "Please provide your first name")
@@ -39,7 +44,7 @@ public class RegisterRequest {
     @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy/MM/dd")
     private Date birthDate;
 
-    @Email()
+    @Email
     @Size(min = 10, max = 80, message = "Your email '${validatedValue}' must be between {min} and {max} chars long")
     @NotNull(message = "Please provide email address")
     private String email;
@@ -47,7 +52,11 @@ public class RegisterRequest {
     @NotNull(message = "Please provide password")
     private String password;
 
+    private String resetPasswordCode;
+
     @Column(nullable=false)
 	private Boolean builtIn=false;
+
+    private Set<Role> roles=new HashSet<>();
 
 }

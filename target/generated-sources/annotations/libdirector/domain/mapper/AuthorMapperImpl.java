@@ -1,4 +1,4 @@
-package libdirector.dto.mapper;
+package libdirector.domain.mapper;
 
 import javax.annotation.processing.Generated;
 import libdirector.domain.entities.Author;

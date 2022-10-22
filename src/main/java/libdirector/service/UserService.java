@@ -12,9 +12,9 @@ import org.springframework.stereotype.Service;
 
 import libdirector.domain.entities.Role;
 import libdirector.domain.entities.User;
-import libdirector.domain.requestdto.request.RegisterRequest;
+import libdirector.domain.requestdto.RegisterRequest;
 import libdirector.domain.enums.RoleType;
-import libdirector.dto.mapper.UserMapper;
+import libdirector.domain.mapper.UserMapper;
 import libdirector.exception.ConflictException;
 import libdirector.exception.ResourceNotFoundException;
 import libdirector.exception.message.ErrorMessage;

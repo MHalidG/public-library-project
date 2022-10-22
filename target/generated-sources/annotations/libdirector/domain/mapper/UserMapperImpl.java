@@ -1,4 +1,4 @@
-package libdirector.dto.mapper;
+package libdirector.domain.mapper;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -10,7 +10,7 @@ import javax.annotation.processing.Generated;
 import libdirector.domain.entities.Role;
 import libdirector.domain.entities.User;
 import libdirector.domain.requestdto.UserDTO;
-import libdirector.domain.requestdto.request.RegisterRequest;
+import libdirector.domain.requestdto.RegisterRequest;
 import org.springframework.stereotype.Component;
 
 @Generated(

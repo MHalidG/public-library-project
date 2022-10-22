@@ -4,7 +4,7 @@ import libdirector.domain.requestdto.PublisherSaveDTO;
 import org.springframework.stereotype.Service;
 
 import libdirector.domain.entities.Publisher;
-import libdirector.dto.mapper.PublisherMapper;
+import libdirector.domain.mapper.PublisherMapper;
 import libdirector.repository.PublisherRepository;
 import lombok.AllArgsConstructor;
 

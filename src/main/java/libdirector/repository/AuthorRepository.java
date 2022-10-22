@@ -1,5 +1,6 @@
 package libdirector.repository;
 
+import libdirector.domain.requestdto.AuthorSaveDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -15,8 +16,9 @@ import java.util.Map;
 public interface AuthorRepository extends JpaRepository<Author, Long>{
 
 
-    @Query(value = "SELECT Author b FROM tbl_authors l  WHERE CONTAINS(l.name, '$:query') and (l.author_id= :author)", nativeQuery = true)
-    Page<Map<String,String>> findAllBookWithPage(Pageable pageable, @Param("author")Long author, @Param("query") String query);
+
+    @Query("SELECT new libdirector.domain.requestdto.AuthorSaveDTO(author) FROM Author author")
+    Page<AuthorSaveDTO> findAllAuthorsWithPage(Pageable page);
 
 
 }

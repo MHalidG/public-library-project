@@ -3,6 +3,7 @@ package libdirector.domain.requestdto;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import libdirector.domain.entities.Author;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,4 +23,12 @@ public class AuthorSaveDTO {
 
     @NotNull(message = "Please provide BuiltIn")
     private Boolean builtIn = false;
+
+    public AuthorSaveDTO(Author author){
+        this.id= author.getId();
+        this.name= author.getName();
+    }
+
+
+
 }

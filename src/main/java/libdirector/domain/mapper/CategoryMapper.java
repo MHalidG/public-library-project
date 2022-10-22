@@ -1,4 +1,4 @@
-package libdirector.dto.mapper;
+package libdirector.domain.mapper;
 
 import org.mapstruct.Mapper;
 

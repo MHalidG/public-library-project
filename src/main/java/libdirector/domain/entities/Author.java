@@ -34,6 +34,7 @@ public class Author {
 
     @Column(nullable = false)
     private Boolean builtIn=false;
+
     @JsonIgnore
     @OneToMany(mappedBy = "authorId")
     private List<Book> authorBooks=new ArrayList<>();

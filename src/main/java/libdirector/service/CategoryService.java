@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 import libdirector.domain.entities.Category;
 import libdirector.domain.requestdto.CategorySaveDTO;
-import libdirector.dto.mapper.CategoryMapper;
+import libdirector.domain.mapper.CategoryMapper;
 import libdirector.repository.CategoryRepository;
 import lombok.AllArgsConstructor;
 

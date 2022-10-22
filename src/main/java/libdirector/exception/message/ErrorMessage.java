@@ -36,5 +36,6 @@ public class ErrorMessage {
 	public final static String EXPIRE_DATE_CANT_CALCULATED_MESSAGE="Expire date cant calculated";
 
 	public final static String ROLE_NOT_FOUND_MESSAGE = "Role with name %s not found";
-	
+
+	public final static String AUTHOR_HAS_RELATION = "Author couldn't be deleted.Author has books";
 }

@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 import java.util.Set;
 @Getter
@@ -13,6 +15,7 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserDTO {
+
 	private Long id;
 
 	private String firstName;
@@ -34,6 +37,7 @@ public class UserDTO {
 	private String resetPasswordCode;
 
 	private Boolean builtIn=false;
+
 	private Set<Role> roles;
 
 /*

@@ -34,13 +34,13 @@ import lombok.Setter;
 public class User {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long id;
 
-	@Column(length = 30,nullable=false)
+	@Column(nullable=false)
 	private String firstName;
 
-	@Column(length = 30,nullable=false)
+	@Column(nullable=false)
 	private String lastName;
 
 	@Column(nullable=false)
