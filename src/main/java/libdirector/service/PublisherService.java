@@ -19,15 +19,15 @@ public class PublisherService {
 	private PublisherMapper publisherMapper;
 
 	public Publisher savePublisher(PublisherSaveDTO publisherDTO) {
-		Publisher publisher = publisherMapper.publisherDTOToPublisher(publisherDTO);
+		Publisher publisher = publisherMapper.publisherSaveDTOToPublisher(publisherDTO);
 		publisherRepository.save(publisher);
 		return publisher;
 	}
 
 	public Publisher deletePublisher(Long id){
-		Publisher publisher=publisherRepository.findById(id).orElseThrow(()-> new RuntimeException(String.format(ErrorMessage.AUTHOR_NOT_FOUND_MESSAGE)));
+		Publisher publisher=publisherRepository.findById(id).orElseThrow(()-> new RuntimeException(String.format(ErrorMessage.PUBLISHER_NOT_FOUND_MESSAGE)));
 		if (!publisher.getPublisherBooks().isEmpty()) {
-			throw new RuntimeException(String.format(ErrorMessage.AUTHOR_HAS_RELATION));
+			throw new RuntimeException(String.format(ErrorMessage.PUBLISHER_HAS_RELATION));
 		}
 		publisherRepository.deleteById(publisher.getId());
 
@@ -38,7 +38,7 @@ public class PublisherService {
 
 	public PublisherSaveDTO getPublisherById(Long id, PublisherSaveDTO publisherSaveDTO) {
 
-		Publisher publisher =publisherRepository.findById(id).orElseThrow(()-> new RuntimeException(String.format(ErrorMessage.AUTHOR_NOT_FOUND_MESSAGE)));
+		Publisher publisher =publisherRepository.findById(id).orElseThrow(()-> new RuntimeException(String.format(ErrorMessage.PUBLISHER_NOT_FOUND_MESSAGE)));
 		publisherSaveDTO.setName(publisher.getName());
 		publisherSaveDTO.setId(publisher.getId());
 		return publisherSaveDTO;
@@ -49,7 +49,7 @@ public class PublisherService {
 
 	public Publisher updatePublisher(PublisherSaveDTO publisherSaveDTO,Long id) {
 		Publisher updatingPublisher=publisherRepository.findById(id).orElseThrow(()-> new
-				RuntimeException(String.format(ErrorMessage.AUTHOR_NOT_FOUND_MESSAGE)));
+				RuntimeException(String.format(ErrorMessage.PUBLISHER_NOT_FOUND_MESSAGE)));
 		updatingPublisher.setName(publisherSaveDTO.getName());
 		publisherRepository.save(updatingPublisher);
 		return updatingPublisher;

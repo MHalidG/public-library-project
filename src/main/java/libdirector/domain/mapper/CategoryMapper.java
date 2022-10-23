@@ -8,6 +8,6 @@ import libdirector.domain.requestdto.CategorySaveDTO;
 @Mapper(componentModel="spring")
 public interface CategoryMapper {
 
-	Category CategoryDTOToCategory(CategorySaveDTO categoryDTO);
+	Category categorySaveDTOToCategory(CategorySaveDTO categoryDTO);
 	
 }

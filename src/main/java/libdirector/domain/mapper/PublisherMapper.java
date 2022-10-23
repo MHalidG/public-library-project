@@ -8,6 +8,6 @@ import libdirector.domain.requestdto.PublisherSaveDTO;
 @Mapper(componentModel = "spring")
 public interface PublisherMapper {
 
-	Publisher publisherDTOToPublisher(PublisherSaveDTO publisherDTO);
+	Publisher publisherSaveDTOToPublisher(PublisherSaveDTO publisherDTO);
 
 }

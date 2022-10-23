@@ -24,6 +24,9 @@ public class LoanSaveDTO {
 	private Long bookId;
 
 	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy/MM/dd HH:mm:ss",timezone= "Turkey")
+	private LocalDateTime loanDate;
+
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy/MM/dd HH:mm:ss",timezone= "Turkey")
 	private LocalDateTime returnDate;
 
 	@Size(max = 300)

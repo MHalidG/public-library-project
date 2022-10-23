@@ -9,13 +9,13 @@ import java.util.Set;
 import javax.annotation.processing.Generated;
 import libdirector.domain.entities.Role;
 import libdirector.domain.entities.User;
-import libdirector.domain.requestdto.UserDTO;
 import libdirector.domain.requestdto.RegisterRequest;
+import libdirector.domain.requestdto.UserDTO;
 import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-10-16T22:25:52+0200",
+    date = "2022-10-23T22:50:07+0200",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 17.0.2 (Oracle Corporation)"
 )
 @Component
@@ -29,6 +29,7 @@ public class UserMapperImpl implements UserMapper {
 
         User user = new User();
 
+        user.setId( userRegisterDTO.getId() );
         user.setFirstName( userRegisterDTO.getFirstName() );
         user.setLastName( userRegisterDTO.getLastName() );
         user.setAddress( userRegisterDTO.getAddress() );
@@ -36,7 +37,12 @@ public class UserMapperImpl implements UserMapper {
         user.setBirthDate( userRegisterDTO.getBirthDate() );
         user.setEmail( userRegisterDTO.getEmail() );
         user.setPassword( userRegisterDTO.getPassword() );
+        user.setResetPasswordCode( userRegisterDTO.getResetPasswordCode() );
         user.setBuiltIn( userRegisterDTO.getBuiltIn() );
+        Set<Role> set = userRegisterDTO.getRoles();
+        if ( set != null ) {
+            user.setRoles( new HashSet<Role>( set ) );
+        }
 
         return user;
     }

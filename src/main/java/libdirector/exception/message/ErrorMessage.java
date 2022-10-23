@@ -38,4 +38,12 @@ public class ErrorMessage {
 	public final static String ROLE_NOT_FOUND_MESSAGE = "Role with name %s not found";
 
 	public final static String AUTHOR_HAS_RELATION = "Author couldn't be deleted.Author has books";
+
+	public final static String PUBLISHER_HAS_RELATION="Publisher couldn't be deleted.Publisher has books";
+
+	public final static String CATEGORY_HAS_RELATION="Category couldn't be deleted.Category has books";
+
+	public final static String LOAN_NOT_FOUND_MESSAGE = "Loan with id %d not found";
+
+	public final static String RETURN_TIME_INCORRECT_MESSAGE = "Return time not correct";
 }

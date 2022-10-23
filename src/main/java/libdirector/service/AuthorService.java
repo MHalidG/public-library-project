@@ -20,7 +20,7 @@ public class AuthorService {
     private AuthorRepository authorRepository;
 
     public Author saveAuthor(AuthorSaveDTO authorSaveDTO){
-        Author author= authorMapper.authorDTOToAuthor(authorSaveDTO);
+        Author author= authorMapper.authorSaveDTOToAuthor(authorSaveDTO);
         authorRepository.save(author);
         return author;
     }

@@ -3,7 +3,6 @@ package libdirector.controller;
 import javax.validation.Valid;
 
 import libdirector.domain.requestdto.AuthorSaveDTO;
-import libdirector.domain.responsedto.response.LibResponse;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;

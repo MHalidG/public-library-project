@@ -10,6 +10,6 @@ public interface AuthorMapper {
 
 	//AuthorMapper INSTANCE=Mappers.getMapper(AuthorMapper.class);
 	
-	Author authorDTOToAuthor(AuthorSaveDTO authorDTO);
+	Author authorSaveDTOToAuthor(AuthorSaveDTO authorDTO);
 	
 }
