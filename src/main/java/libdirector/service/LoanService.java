@@ -170,4 +170,16 @@ public class LoanService {
 		}else
 			return 1;
 	}
+
+	public LoanSaveDTO getUserLoanById(Long userId, Long loanId) {
+		Loan loan=loanRepository.findById(loanId).orElseThrow(() -> new
+				ResourceNotFoundException(String.format(ErrorMessage.LOAN_NOT_FOUND_MESSAGE, loanId)));
+		LoanSaveDTO loanReturnDTO=new LoanSaveDTO();
+		loanReturnDTO.setLoanDate(loan.getLoanDate());
+		loanReturnDTO.setUserId(loan.getUserId().getId());
+		loanReturnDTO.setReturnDate(loan.getReturnDate());
+		loanReturnDTO.setBookId(loan.getBookId().getId());
+		loanReturnDTO.setExpireDate(loan.getExpireDate());
+		return loanReturnDTO;
+	}
 }

@@ -29,6 +29,10 @@ public class LoanSaveDTO {
 	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy/MM/dd HH:mm:ss",timezone= "Turkey")
 	private LocalDateTime returnDate;
 
+
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy/MM/dd HH:mm:ss",timezone= "Turkey")
+	private LocalDateTime expireDate;
+
 	@Size(max = 300)
 	private String notes;
 

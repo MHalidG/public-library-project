@@ -30,15 +30,15 @@ public class BookService {
 	public Book saveBook(BookSaveDTO bookDTO) {
 		Book book = new Book();
 		book.setCreateDate(LocalDateTime.now());
-		book.setAuthorId(authorRepository.findById(bookDTO.getBookAuthor()).orElseThrow(
-				() -> new ResourceNotFoundException(String.format(ErrorMessage.AUTHOR_NOT_FOUND_MESSAGE, bookDTO.getBookAuthor()))));
+		book.setAuthorId(authorRepository.findById(bookDTO.getAuthorId()).orElseThrow(
+				() -> new ResourceNotFoundException(String.format(ErrorMessage.AUTHOR_NOT_FOUND_MESSAGE, bookDTO.getAuthorId()))));
 
 		book.setCategoryId(categoryRepository.findById(bookDTO.getCategoryId()).orElseThrow(() -> new ResourceNotFoundException(
 				String.format(ErrorMessage.CATEGORY_NOT_FOUND_MESSAGE, bookDTO.getCategoryId()))));
 
-		book.setBookPublisher( publisherRepository.findById(bookDTO.getBookPublisher())
+		book.setPublisherId( publisherRepository.findById(bookDTO.getPublisherId())
 				.orElseThrow(() -> new ResourceNotFoundException(
-						String.format(ErrorMessage.PUBLISHER_NOT_FOUND_MESSAGE, bookDTO.getBookPublisher()))));
+						String.format(ErrorMessage.PUBLISHER_NOT_FOUND_MESSAGE, bookDTO.getPublisherId()))));
 		book.setIsbn(bookDTO.getIsbn());
 		book.setPageCount(bookDTO.getPageCount());
 		book.setName(bookDTO.getName());
@@ -53,36 +53,4 @@ public class BookService {
 		//return authorRepository.findAllBookWithPage(pageable,author,query);
 		//return publisherRepository.findAllBookWithPage(pageable,publisher,query);
 	}
-
-
-
-
-/*
-	public Author declareAuthor() {
-
-		Author author = authorRepository.findById(bookAuthor).orElseThrow(
-				() -> new ResourceNotFoundException(String.format(ErrorMessage.AUTHOR_NOT_FOUND_MESSAGE, bookAuthor)));
-
-		return author;
-	}
-
-	public Publisher declarePublisher() {
-
-		Publisher publisher = publisherRepository.findById(bookPublisher)
-				.orElseThrow(() -> new ResourceNotFoundException(
-						String.format(ErrorMessage.PUBLISHER_NOT_FOUND_MESSAGE, bookPublisher)));
-
-		return publisher;
-	}
-
-	public Category declareCategory() {
-
-		Category category = categoryRepository.findById(bookCategory).orElseThrow(() -> new ResourceNotFoundException(
-				String.format(ErrorMessage.CATEGORY_NOT_FOUND_MESSAGE, bookCategory)));
-
-		return category;
-	}
-	*/
-
-
 }
