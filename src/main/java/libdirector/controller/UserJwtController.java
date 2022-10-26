@@ -1,7 +1,13 @@
 package libdirector.controller;
 
-import javax.validation.Valid;
-
+import libdirector.domain.requestdto.LoginRequest;
+import libdirector.domain.requestdto.RegisterRequest;
+import libdirector.domain.responsedto.response.LibResponse;
+import libdirector.domain.responsedto.response.LoginResponse;
+import libdirector.domain.responsedto.response.ResponseMessage;
+import libdirector.security.jwt.JwtUtils;
+import libdirector.service.UserService;
+import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -12,14 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import libdirector.domain.requestdto.RegisterRequest;
-import libdirector.domain.requestdto.LoginRequest;
-import libdirector.domain.responsedto.response.LibResponse;
-import libdirector.domain.responsedto.response.LoginResponse;
-import libdirector.domain.responsedto.response.ResponseMessage;
-import libdirector.security.jwt.JwtUtils;
-import libdirector.service.UserService;
-import lombok.AllArgsConstructor;
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping

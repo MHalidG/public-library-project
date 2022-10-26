@@ -1,14 +1,13 @@
 package libdirector.security.service;
 
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.stereotype.Service;
-
 import libdirector.domain.entities.User;
 import libdirector.exception.message.ErrorMessage;
 import libdirector.repository.UserRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 
 @Service
 @AllArgsConstructor

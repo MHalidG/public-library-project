@@ -1,19 +1,14 @@
 package libdirector.service;
 
-import java.util.List;
-
-import libdirector.domain.entities.Author;
-import libdirector.domain.requestdto.AuthorSaveDTO;
+import libdirector.domain.entities.Category;
+import libdirector.domain.mapper.CategoryMapper;
+import libdirector.domain.requestdto.CategorySaveDTO;
 import libdirector.exception.message.ErrorMessage;
+import libdirector.repository.CategoryRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import libdirector.domain.entities.Category;
-import libdirector.domain.requestdto.CategorySaveDTO;
-import libdirector.domain.mapper.CategoryMapper;
-import libdirector.repository.CategoryRepository;
-import lombok.AllArgsConstructor;
 
 @Service
 @AllArgsConstructor
@@ -26,6 +21,7 @@ public class CategoryService {
 
 	public Category saveCategory(CategorySaveDTO categorySaveDTO){
 		Category category= categoryMapper.categorySaveDTOToCategory(categorySaveDTO);
+		category.setSequence(category.getSequence());
 		categoryRepository.save(category);
 		return category;
 	}

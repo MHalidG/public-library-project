@@ -3,7 +3,8 @@ package libdirector.exception.message;
 public class ErrorMessage {
 
 	public final static String RESOURCE_NOT_FOUND_MESSAGE = "Resource with id %d not found";
-	
+
+	public final static String REQUEST_REJECTED = "Loan with id : %d  does not belong to this user : %d";
 	public final static String USER_NOT_FOUND_MESSAGE = "User with id %d not found";
 	
 	public final static String BOOK_NOT_FOUND_MESSAGE = "Book with id %d not found";

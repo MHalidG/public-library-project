@@ -1,24 +1,24 @@
 package libdirector.service;
 
-import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
-import java.util.Map;
-
-import libdirector.domain.requestdto.LoanFinishDTO;
-import libdirector.domain.requestdto.LoanSaveDTO;
-import libdirector.repository.UserRepository;
-import lombok.AllArgsConstructor;
-import org.springframework.stereotype.Service;
-
 import libdirector.domain.entities.Book;
 import libdirector.domain.entities.Loan;
 import libdirector.domain.entities.User;
+import libdirector.domain.requestdto.LoanFinishDTO;
+import libdirector.domain.requestdto.LoanSaveDTO;
 import libdirector.exception.ResourceNotFoundException;
 import libdirector.exception.message.ErrorMessage;
 import libdirector.repository.BookRepository;
 import libdirector.repository.LoanRepository;
+import libdirector.repository.UserRepository;
+import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 
 import javax.validation.Valid;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
+import java.util.Map;
 
 @Service
 @AllArgsConstructor
@@ -174,6 +174,10 @@ public class LoanService {
 	public LoanSaveDTO getUserLoanById(Long userId, Long loanId) {
 		Loan loan=loanRepository.findById(loanId).orElseThrow(() -> new
 				ResourceNotFoundException(String.format(ErrorMessage.LOAN_NOT_FOUND_MESSAGE, loanId)));
+		if(loan.getUserId().getId()!=userId){
+			throw new RuntimeException(String.format(ErrorMessage.REQUEST_REJECTED,loanId,userId));
+		}
+
 		LoanSaveDTO loanReturnDTO=new LoanSaveDTO();
 		loanReturnDTO.setLoanDate(loan.getLoanDate());
 		loanReturnDTO.setUserId(loan.getUserId().getId());
@@ -181,5 +185,18 @@ public class LoanService {
 		loanReturnDTO.setBookId(loan.getBookId().getId());
 		loanReturnDTO.setExpireDate(loan.getExpireDate());
 		return loanReturnDTO;
+	}
+
+	public Loan getLoanById(Long loanId) {
+		Loan loan=loanRepository.findById(loanId).orElseThrow(() -> new
+				ResourceNotFoundException(String.format(ErrorMessage.LOAN_NOT_FOUND_MESSAGE, loanId)));
+		return loan;
+	}
+
+
+	public Page<Loan> getUserLoans(Pageable pageable,Long userId) {
+		Page<Loan> loans = loanRepository.getLoansByUserId(pageable,userId);
+
+		return loans;
 	}
 }

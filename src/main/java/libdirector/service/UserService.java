@@ -1,26 +1,25 @@
 package libdirector.service;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
-import libdirector.domain.requestdto.UserDTO;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Service;
-
 import libdirector.domain.entities.Role;
 import libdirector.domain.entities.User;
-import libdirector.domain.requestdto.RegisterRequest;
 import libdirector.domain.enums.RoleType;
 import libdirector.domain.mapper.UserMapper;
+import libdirector.domain.requestdto.RegisterRequest;
+import libdirector.domain.requestdto.UserDTO;
 import libdirector.exception.ConflictException;
 import libdirector.exception.ResourceNotFoundException;
 import libdirector.exception.message.ErrorMessage;
 import libdirector.repository.RoleRepository;
 import libdirector.repository.UserRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 @AllArgsConstructor
 @Service
 public class UserService {

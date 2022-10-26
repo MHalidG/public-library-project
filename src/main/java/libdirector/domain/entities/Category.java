@@ -1,7 +1,10 @@
 package libdirector.domain.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -26,10 +29,13 @@ public class Category {
 	@Column(nullable = false)
 	private Boolean builtIn = false;
 
-	@Column(nullable = false)
+	@Column
+	@GeneratedValue(SequenceGenerator.class)
+	private Integer sequence;
+
 	@OneToOne
-	@JoinTable(name = "tbl_category_sequence", joinColumns = @JoinColumn(name = "category_sequence"), inverseJoinColumns = @JoinColumn(name = "sequence"))
-	private CategorySequence sequence;
+	@JoinTable(name = "category_sequence_relations", joinColumns = @JoinColumn(name = "category_id"), inverseJoinColumns = @JoinColumn(name = "sequence"))
+	private CategorySequence sequences;
 
 	@JsonIgnore
 	@OneToMany(mappedBy = "categoryId")

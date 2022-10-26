@@ -1,9 +1,8 @@
 package libdirector.domain.mapper;
 
-import org.mapstruct.Mapper;
-
 import libdirector.domain.entities.Author;
 import libdirector.domain.requestdto.AuthorSaveDTO;
+import org.mapstruct.Mapper;
 //@Mapper
 @Mapper(componentModel="spring")
 public interface AuthorMapper {

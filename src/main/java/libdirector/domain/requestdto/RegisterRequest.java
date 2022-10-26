@@ -1,21 +1,20 @@
 package libdirector.domain.requestdto;
 
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
-
-import javax.persistence.Column;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
-
 import com.fasterxml.jackson.annotation.JsonFormat;
 import libdirector.domain.entities.Role;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import javax.persistence.Column;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter

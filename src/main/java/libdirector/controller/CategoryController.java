@@ -1,10 +1,9 @@
 package libdirector.controller;
 
-import javax.validation.Valid;
-
-import libdirector.domain.entities.Author;
 import libdirector.domain.entities.Category;
-import libdirector.domain.requestdto.AuthorSaveDTO;
+import libdirector.domain.requestdto.CategorySaveDTO;
+import libdirector.service.CategoryService;
+import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -14,9 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import libdirector.domain.requestdto.CategorySaveDTO;
-import libdirector.service.CategoryService;
-import lombok.AllArgsConstructor;
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/categories")
