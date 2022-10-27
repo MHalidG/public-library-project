@@ -30,12 +30,7 @@ public class Category {
 	private Boolean builtIn = false;
 
 	@Column
-	@GeneratedValue(SequenceGenerator.class)
 	private Integer sequence;
-
-	@OneToOne
-	@JoinTable(name = "category_sequence_relations", joinColumns = @JoinColumn(name = "category_id"), inverseJoinColumns = @JoinColumn(name = "sequence"))
-	private CategorySequence sequences;
 
 	@JsonIgnore
 	@OneToMany(mappedBy = "categoryId")

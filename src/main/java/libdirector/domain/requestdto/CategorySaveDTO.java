@@ -1,7 +1,6 @@
 package libdirector.domain.requestdto;
 
 import libdirector.domain.entities.Category;
-import libdirector.domain.entities.CategorySequence;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,7 +21,7 @@ public class CategorySaveDTO {
 	@Size(min = 2, max = 80, message = "Category Name '${validatedValue}' must be between {min} and {max} chars long")
 	private String name;
 
-	private CategorySequence sequence;
+	private Integer sequence;
 
 	@NotNull(message = "Please provide BuiltIn")
 	private Boolean builtIn = false;
