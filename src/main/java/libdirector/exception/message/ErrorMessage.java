@@ -30,7 +30,7 @@ public class ErrorMessage {
 
 	public final static String BOOK_NOT_AVAILABLE_MESSAGE = "This Book is not available : %s ";
 
-	public final static String BOOK_USED_BY_RESERVATION_MESSAGE = "Book couldn't be deleted.Book is used by a loan";
+	public final static String BOOK_USED_BY_LOAN_MESSAGE = "Book couldn't be deleted.Book is used by a loan";
 
 	public final static String USER_SCORE_NOT_ENOUGH_MESSAGE="User score is not enough. User Score is: %d";
 

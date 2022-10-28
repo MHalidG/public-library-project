@@ -1,4 +1,4 @@
-package libdirector.domain.responsedto.response;
+package libdirector.domain.responsedto;
 
 public class ResponseMessage {
 

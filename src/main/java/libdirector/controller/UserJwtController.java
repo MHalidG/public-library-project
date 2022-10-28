@@ -2,9 +2,9 @@ package libdirector.controller;
 
 import libdirector.domain.requestdto.LoginRequest;
 import libdirector.domain.requestdto.RegisterRequest;
-import libdirector.domain.responsedto.response.LibResponse;
-import libdirector.domain.responsedto.response.LoginResponse;
-import libdirector.domain.responsedto.response.ResponseMessage;
+import libdirector.domain.responsedto.LibResponse;
+import libdirector.domain.responsedto.LoginResponse;
+import libdirector.domain.responsedto.ResponseMessage;
 import libdirector.security.jwt.JwtUtils;
 import libdirector.service.UserService;
 import lombok.AllArgsConstructor;

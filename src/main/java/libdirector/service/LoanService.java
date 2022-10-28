@@ -3,8 +3,8 @@ package libdirector.service;
 import libdirector.domain.entities.Book;
 import libdirector.domain.entities.Loan;
 import libdirector.domain.entities.User;
-import libdirector.domain.requestdto.LoanFinishDTO;
 import libdirector.domain.requestdto.LoanSaveDTO;
+import libdirector.domain.responsedto.LoanResponseDTO;
 import libdirector.exception.ResourceNotFoundException;
 import libdirector.exception.message.ErrorMessage;
 import libdirector.repository.BookRepository;
@@ -115,7 +115,6 @@ public class LoanService {
 			kM(uS);
 		} else if (uS == -2 && kS >= 1) {
 			kM(uS);
-		}else if(uS == -2 && kS >= 1){
 		}
 	}
 	void kM(Integer score){
@@ -131,7 +130,7 @@ public class LoanService {
 		}
 	}
 
-	public Loan updateLoan(LoanFinishDTO loanFinishDTO, Long id) {
+	public Loan updateLoan(LoanSaveDTO loanFinishDTO, Long id) {
 
 		Loan loan=loanRepository.findById(id).orElseThrow(() -> new
 				ResourceNotFoundException(String.format(ErrorMessage.LOAN_NOT_FOUND_MESSAGE, id)));
@@ -162,7 +161,7 @@ public class LoanService {
 		}
 	}
 
-	private Integer returnDateAndUpdateScore(LoanFinishDTO loanFinishDTO, Loan loan) {
+	private Integer returnDateAndUpdateScore(LoanSaveDTO loanFinishDTO, Loan loan) {
 		if(loanFinishDTO.getReturnDate().isBefore(loan.getLoanDate())){
 			throw new RuntimeException(String.format(ErrorMessage.RETURN_TIME_INCORRECT_MESSAGE));
 		}else if(loanFinishDTO.getReturnDate().isAfter(loan.getExpireDate())){
@@ -171,32 +170,38 @@ public class LoanService {
 			return 1;
 	}
 
-	public LoanSaveDTO getUserLoanById(Long userId, Long loanId) {
+	public LoanResponseDTO getUserLoanById(Long userId, Long loanId) {
 		Loan loan=loanRepository.findById(loanId).orElseThrow(() -> new
 				ResourceNotFoundException(String.format(ErrorMessage.LOAN_NOT_FOUND_MESSAGE, loanId)));
-		if(loan.getUserId().getId()!=userId){
+		if(!loan.getUserId().getId().equals(userId)){
 			throw new RuntimeException(String.format(ErrorMessage.REQUEST_REJECTED,loanId,userId));
 		}
 
-		LoanSaveDTO loanReturnDTO=new LoanSaveDTO();
-		loanReturnDTO.setLoanDate(loan.getLoanDate());
-		loanReturnDTO.setUserId(loan.getUserId().getId());
-		loanReturnDTO.setReturnDate(loan.getReturnDate());
-		loanReturnDTO.setBookId(loan.getBookId().getId());
-		loanReturnDTO.setExpireDate(loan.getExpireDate());
+		LoanResponseDTO loanReturnDTO=new LoanResponseDTO();
+		loanReturnDTO.setLoanDate(loan.getLoanDate().toString());
+		loanReturnDTO.setReturnDate(loan.getReturnDate().toString());
+		loanReturnDTO.setBookId(loan.getBookId());
+		loanReturnDTO.setExpireDate(loan.getExpireDate().toString());
 		return loanReturnDTO;
 	}
 
 	public Loan getLoanById(Long loanId) {
-		Loan loan=loanRepository.findById(loanId).orElseThrow(() -> new
+		return loanRepository.findById(loanId).orElseThrow(() -> new
 				ResourceNotFoundException(String.format(ErrorMessage.LOAN_NOT_FOUND_MESSAGE, loanId)));
-		return loan;
+
 	}
 
 
-	public Page<Loan> getUserLoans(Pageable pageable,Long userId) {
-		Page<Loan> loans = loanRepository.getLoansByUserId(pageable,userId);
+	public Page<LoanResponseDTO> getUserLoans(Pageable pageable,Long userId) {
+		return loanRepository.getLoansByUserIdOrderByBookId(pageable,userId);
 
-		return loans;
+	}
+
+	public Page<Loan> getUserLoansByAdmin(Pageable pageable, Long userId) {
+		return loanRepository.getLoansByUserId(pageable,userId);
+	}
+
+	public Page<Book> getBookLoansByAdmin(Pageable pageable, Long bookId) {
+		return loanRepository.getLoansByBookId(pageable,bookId);
 	}
 }

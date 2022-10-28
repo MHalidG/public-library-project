@@ -1,4 +1,4 @@
-package libdirector.domain.responsedto.response;
+package libdirector.domain.responsedto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

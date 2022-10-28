@@ -30,6 +30,7 @@ public class CategorySaveDTO {
 	public CategorySaveDTO(Category category){
 		this.id=category.getId();
 		this.name= category.getName();
+		this.builtIn=category.getBuiltIn();
 		this.sequence= category.getSequence();
 	}
 }

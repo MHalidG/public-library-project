@@ -10,6 +10,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 @AllArgsConstructor
 public class CategoryService {
@@ -21,10 +24,27 @@ public class CategoryService {
 
 	public Category saveCategory(CategorySaveDTO categorySaveDTO){
 		Category category= categoryMapper.categorySaveDTOToCategory(categorySaveDTO);
-		category.setSequence(category.getSequence());
+		category.setSequence(setSequenceNumber());
 		categoryRepository.save(category);
 		return category;
 	}
+
+	public Integer setSequenceNumber() {
+		List<Integer> seqList = categoryRepository.findAll().stream().map(e -> e.getSequence()).sorted().collect(Collectors.toList());
+		Integer sequence = 0;
+		if (seqList.isEmpty()) {
+			return sequence = 1;
+		} else{
+			for (int i = 1; i <= seqList.size(); i++) {
+				if (!seqList.contains(i)) {
+					return sequence =i;
+				}
+				sequence=i+1;
+			}
+		}
+		return sequence;
+	}
+
 
 	public Category deleteCategory(Long id){
 		Category category=categoryRepository.findById(id).orElseThrow(()-> new RuntimeException(String.format(ErrorMessage.CATEGORY_NOT_FOUND_MESSAGE)));
@@ -60,5 +80,7 @@ public class CategoryService {
 
 		return category;
 	}
+
+
 
 }

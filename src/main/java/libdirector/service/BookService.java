@@ -1,6 +1,7 @@
 package libdirector.service;
 
 import libdirector.domain.entities.Book;
+import libdirector.domain.entities.Publisher;
 import libdirector.domain.requestdto.BookSaveDTO;
 import libdirector.exception.ResourceNotFoundException;
 import libdirector.exception.message.ErrorMessage;
@@ -19,6 +20,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class BookService {
 
+	private PublisherService publisherService;
 	private AuthorRepository authorRepository;
 
 	private PublisherRepository publisherRepository;
@@ -51,5 +53,37 @@ public class BookService {
 		return bookRepository.findAllBookWithPage(pageable,cat,publisher,author,query);
 		//return authorRepository.findAllBookWithPage(pageable,author,query);
 		//return publisherRepository.findAllBookWithPage(pageable,publisher,query);
+	}
+
+    public Book getBookById(Long bookId) {
+		return bookRepository.findById(bookId).orElseThrow(()-> new RuntimeException(String.format(ErrorMessage.BOOK_NOT_FOUND_MESSAGE)));
+    }
+
+	public Book deleteBookById(Long bookId) {
+		Book book=bookRepository.findById(bookId).orElseThrow(()-> new RuntimeException(String.format(ErrorMessage.AUTHOR_NOT_FOUND_MESSAGE)));
+		if (!book.getLoanable()){
+			throw new RuntimeException(String.format(ErrorMessage.BOOK_USED_BY_LOAN_MESSAGE));
+		}else bookRepository.deleteById(bookId);
+
+	return book;
+	}
+
+	public Book updateBook(BookSaveDTO bookDTO, Long bookId) {
+		Book book=bookRepository.findById(bookId).orElseThrow(()-> new RuntimeException(String.format(ErrorMessage.BOOK_NOT_FOUND_MESSAGE)));
+
+		book.setPublisherId(publisherRepository.findById(bookDTO.getPublisherId()).orElseThrow(()-> new RuntimeException(String.format(ErrorMessage.PUBLISHER_NOT_FOUND_MESSAGE))));
+		book.setLoanable(bookDTO.getLoanable());
+		book.setAuthorId(authorRepository.findById(bookDTO.getAuthorId()).orElseThrow(()-> new RuntimeException(String.format(ErrorMessage.AUTHOR_NOT_FOUND_MESSAGE))));
+		book.setIsbn(bookDTO.getIsbn());
+		book.setName(bookDTO.getName());
+		book.setCategoryId(categoryRepository.findById(bookDTO.getCategoryId()).orElseThrow(()-> new RuntimeException(String.format(ErrorMessage.CATEGORY_NOT_FOUND_MESSAGE))));
+		book.setPageCount(bookDTO.getPageCount());
+		book.setShelfCode(bookDTO.getShelfCode());
+		book.setActive(bookDTO.getActive());
+		//book.setImage(bookDTO.getImage());
+		book.setPublishDate(bookDTO.getPublishDate());
+		book.setFeatured(bookDTO.getFeatured());
+		bookRepository.save(book);
+		return book;
 	}
 }

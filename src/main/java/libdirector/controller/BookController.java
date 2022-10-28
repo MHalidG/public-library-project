@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -23,8 +24,9 @@ import java.util.Map;
 public class BookController {
 
     private BookService bookService;
+//13-17 Requirement Document
 
-
+    //15
     @PostMapping
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Map<String, String>> createBook(@Valid @RequestBody BookSaveDTO bookDTO)  {
@@ -38,7 +40,7 @@ public class BookController {
         return new ResponseEntity<>(map, HttpStatus.CREATED);
 
     }
-
+    //13 Tamamlanmadi
     @GetMapping
     public ResponseEntity<Page<Book>> getAllWithPage(@RequestParam String query,
                                                      @RequestParam("cat") Long cat,
@@ -53,8 +55,32 @@ public class BookController {
 
         return ResponseEntity.ok(bookPage);
     }
+    //14
+    @GetMapping("/{bookId}")
+    public ResponseEntity<Book> getBookById(@PathVariable Long bookId){
 
+        Book book=bookService.getBookById(bookId);
+        return ResponseEntity.ok(book);
+    }
 
+    //17
+    @DeleteMapping("{bookId}")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<Book> deleteBookById(@PathVariable Long bookId){
+        Book book=bookService.deleteBookById(bookId);
+    return ResponseEntity.ok(book);
+    }
+
+    //16 Eksik Var ImageFile Map edilmedi
+    @PutMapping("{bookId}")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<Book> updateBook(@PathVariable Long bookId, @Valid @RequestBody BookSaveDTO bookDTO)  {
+
+        Book book=bookService.updateBook(bookDTO,bookId);
+
+        return ResponseEntity.ok(book);
+
+    }
 
 
 }
