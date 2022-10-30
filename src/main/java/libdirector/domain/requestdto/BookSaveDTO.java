@@ -33,10 +33,10 @@ public class BookSaveDTO {
 	@NotNull(message = "Please provide a Author id")
 	private Long authorId;
 
-	@NotNull(message = "Please provide a Publichser id")
+	@NotNull(message = "Please provide a Publishser id")
 	private Long publisherId;
 
-	@Pattern(regexp = "^\\d{4}", message="(Just enter the year it was published)")
+
 	private Integer publishDate;
 
 	@NotNull(message = "Please provide A Category id")
