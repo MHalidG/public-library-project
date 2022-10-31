@@ -22,6 +22,7 @@ public class AuthorController {
 
     private AuthorService authorService;
 
+    //36
     @PutMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Author> updateAuthor(@PathVariable Long id, @Valid @RequestBody AuthorSaveDTO authorSaveDTO){
@@ -30,6 +31,7 @@ public class AuthorController {
         return new ResponseEntity<>(authorService.updateAuthor(authorSaveDTO,id),HttpStatus.CREATED);
     }
 
+    //35
     @PostMapping
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Author> saveAuthor(@Valid @RequestBody AuthorSaveDTO authorSaveDTO) {
@@ -38,6 +40,7 @@ public class AuthorController {
 
     }
 
+    //34
     @GetMapping("/{id}")
     public ResponseEntity<AuthorSaveDTO> getAuthorById(@PathVariable Long id,AuthorSaveDTO authorSaveDTO){
         authorService.getAuthorById(id,authorSaveDTO);
@@ -46,12 +49,15 @@ public class AuthorController {
         return new ResponseEntity<>(authorService.getAuthorById(id,authorSaveDTO),HttpStatus.OK);
 
     }
+
+    //37
     @DeleteMapping("/{id}")
     public ResponseEntity<Author> deleteAuthor(@PathVariable Long id){
 
         return new ResponseEntity<>(authorService.deleteAuthor(id),HttpStatus.OK);
     }
 
+    //33
     @GetMapping
     public ResponseEntity<Page<AuthorSaveDTO>> getAllAuthorsByPage(@RequestParam(required = false, value = "page", defaultValue = "0") int page,
                                                                    @RequestParam(required = false,value = "size", defaultValue = "20") int size,

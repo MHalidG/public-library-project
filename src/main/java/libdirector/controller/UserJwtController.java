@@ -32,7 +32,8 @@ public class UserJwtController {
 	//Spring containerin conteynirina iki turlu yapi yerlestirebiliyoruz
 	//1-Component Anotasyonu
 	//2-Bean olusturarak
-	
+
+	//46
 	@PostMapping("/register")
 	public ResponseEntity<LibResponse> register(@Valid @RequestBody RegisterRequest registerRequest){
 
@@ -45,8 +46,8 @@ public class UserJwtController {
 		
 		return new ResponseEntity<>(response,HttpStatus.CREATED);
 	}
-	
-	@PostMapping("/login")
+	//45
+	@PostMapping("/singnin")
 	public ResponseEntity<LoginResponse> authenticate(@Valid @RequestBody LoginRequest loginRequest){
 				Authentication authentication=authManager.authenticate(new
 				UsernamePasswordAuthenticationToken(loginRequest.getEmail(),loginRequest.getPassword()));

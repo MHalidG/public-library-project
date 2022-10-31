@@ -4,27 +4,31 @@ import libdirector.domain.entities.Role;
 import libdirector.domain.entities.User;
 import libdirector.domain.enums.RoleType;
 import libdirector.domain.mapper.UserMapper;
+import libdirector.domain.requestdto.CategorySaveDTO;
+import libdirector.domain.requestdto.LoanSaveDTO;
 import libdirector.domain.requestdto.RegisterRequest;
 import libdirector.domain.requestdto.UserDTO;
 import libdirector.exception.ConflictException;
 import libdirector.exception.ResourceNotFoundException;
 import libdirector.exception.message.ErrorMessage;
+import libdirector.repository.LoanRepository;
 import libdirector.repository.RoleRepository;
 import libdirector.repository.UserRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
+
 @AllArgsConstructor
 @Service
 public class UserService {
 	
-	
+	 private LoanRepository loanRepository;
 	 private UserRepository userRepository;
 	 private RoleRepository roleRepository;	 
 	 private PasswordEncoder passwordEncoder;
@@ -59,17 +63,35 @@ public class UserService {
 	
 }
 
-public List<UserDTO> getAllUsers(){
-		List<User> users=userRepository.findAll();
+public Page<User> getAllUsers(Pageable pageable){
+		Page<User> users=userRepository.findAllUserPageable(pageable);
 
-		List<UserDTO> usersDTO=new ArrayList<>();
-	for (User user:users
-		 ) {
-		UserDTO userDTO=userMapper.userToUserDTO(user);
-		usersDTO.add(userDTO);
-	}
-		 return usersDTO;
+		 return users;
 }
 
 
+    public User getAuthUser(Long authUserId) {
+		User authUser = userRepository.findById(authUserId).orElseThrow(()->new RuntimeException(String.format(ErrorMessage.USER_NOT_FOUND_MESSAGE)));
+		return authUser;
+	}
+
+	public Page<LoanSaveDTO> getAuthUserLoans(Pageable pageable, Long authUserId) {
+		User authUser = userRepository.findById(authUserId).orElseThrow(()->new RuntimeException(String.format(ErrorMessage.USER_NOT_FOUND_MESSAGE)));
+		Page page=loanRepository.getLoansByUserIdOrderByExpireDate(pageable,authUserId);
+		return page;
+	}
+
+	public User getUserById(Long id) {
+		 return userRepository.findById(id).orElseThrow(()->new RuntimeException(String.format(ErrorMessage.USER_NOT_FOUND_MESSAGE)));
+	}
+
+	public User createSuperUser(User user) {
+		 return userRepository.save(user);
+	}
+/*
+	public User createMemberUser(User user) {
+		Role role=new Role();
+		role.setName(RoleType.ROLE_MEMBER);
+
+		}*/
 }

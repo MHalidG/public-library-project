@@ -2,6 +2,7 @@ package libdirector.repository;
 
 import libdirector.domain.entities.Book;
 import libdirector.domain.entities.Loan;
+import libdirector.domain.requestdto.LoanSaveDTO;
 import libdirector.domain.responsedto.LoanResponseDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -27,6 +28,7 @@ public interface LoanRepository extends JpaRepository<Loan, Long>{
 
     Page<Loan> getLoansByUserId(Pageable pageable, Long userId);
 
+    Page<LoanSaveDTO> getLoansByUserIdOrderByExpireDate(Pageable pageable, Long userId);
     Page<LoanResponseDTO> getLoansByUserIdOrderByBookId(Pageable pageable,Long userId);
 
 

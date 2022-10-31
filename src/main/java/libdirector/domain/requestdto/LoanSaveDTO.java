@@ -1,6 +1,9 @@
 package libdirector.domain.requestdto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import libdirector.domain.entities.Book;
+import libdirector.domain.entities.Loan;
+import libdirector.domain.entities.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,10 +20,10 @@ import java.time.LocalDateTime;
 public class LoanSaveDTO {
 
 	@NotNull(message = "User can not null")
-	private Long userId;
+	private User userId;
 
 	@NotNull(message = "Book can not null")
-	private Long bookId;
+	private Book bookId;
 
 	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy/MM/dd HH:mm:ss",timezone= "Turkey")
 	private LocalDateTime loanDate;
@@ -35,6 +38,15 @@ public class LoanSaveDTO {
 	@Size(max = 300)
 	private String notes;
 
+
+	LoanSaveDTO(Loan loan){
+		this.bookId= loan.getBookId();
+		this.expireDate=loan.getExpireDate();
+		this.userId=loan.getUserId();
+		this.returnDate=loan.getReturnDate();
+		this.loanDate=loan.getLoanDate();
+		
+	}
 
 
 }

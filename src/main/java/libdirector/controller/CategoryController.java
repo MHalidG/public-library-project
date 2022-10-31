@@ -22,11 +22,7 @@ public class CategoryController {
 
 	private CategoryService categoryService;
 
-
-
-
-
-
+	//42
 	@PutMapping("/{id}")
 	@PreAuthorize("hasRole('ADMIN')")
 	public ResponseEntity<Category> updateCategory(@PathVariable Long id, @Valid @RequestBody CategorySaveDTO categorySaveDTO){
@@ -35,6 +31,7 @@ public class CategoryController {
 		return new ResponseEntity<>(categoryService.updateCategory(categorySaveDTO,id),HttpStatus.CREATED);
 	}
 
+	//41
 	@PostMapping
 	@PreAuthorize("hasRole('ADMIN')")
 	public ResponseEntity<Category> saveCategory(@Valid @RequestBody CategorySaveDTO categorySaveDTO) {
@@ -43,6 +40,7 @@ public class CategoryController {
 
 	}
 
+	//40
 	@GetMapping("/{id}")
 	public ResponseEntity<CategorySaveDTO> getCategoryById(@PathVariable Long id,CategorySaveDTO categorySaveDTO){
 		categoryService.getCategoryById(id,categorySaveDTO);
@@ -51,12 +49,15 @@ public class CategoryController {
 		return new ResponseEntity<>(categoryService.getCategoryById(id,categorySaveDTO),HttpStatus.OK);
 
 	}
+
+	//43
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Category> deleteAuthor(@PathVariable Long id){
 
 		return new ResponseEntity<>(categoryService.deleteCategory(id),HttpStatus.OK);
 	}
 
+	//39
 	@GetMapping
 	public ResponseEntity<Page<CategorySaveDTO>> getAllCategoriesByPage(@RequestParam(required = false, value = "page", defaultValue = "0") int page,
 																   @RequestParam(required = false,value = "size", defaultValue = "20") int size,
