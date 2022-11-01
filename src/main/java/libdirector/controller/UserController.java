@@ -79,6 +79,8 @@ public class UserController {
     public ResponseEntity<User> createSuperUser(@RequestBody @Valid User user){
         userService.createSuperUser(user);
         return ResponseEntity.ok(user);
+
+        //Role Set mekanizmasini ayarlamam lazim sonraki method icin de gerekli
     }
     //52
     /*
