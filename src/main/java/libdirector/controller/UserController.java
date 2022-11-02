@@ -81,6 +81,7 @@ public class UserController {
         return ResponseEntity.ok(user);
 
         //Role Set mekanizmasini ayarlamam lazim sonraki method icin de gerekli
+        //UserRole Mekanizmalarini ve Repo queryleri coz
     }
     //52
     /*
