@@ -20,6 +20,8 @@ public interface BookRepository extends JpaRepository<Book, Long>{
                                    @Param("publish") Long publisher,
                                    @Param("author")Long author,
                                    @Param("query") String query);
+
+
 }
 
 /*Yazilmasi gereken sorgu

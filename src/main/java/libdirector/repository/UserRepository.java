@@ -17,10 +17,10 @@ public interface UserRepository extends JpaRepository<User, Long>{
 	Boolean existsByEmail(String email);
 
 	Page<User> findAllUserPageable(Pageable pageable);
-/*
+
 	@Query("SELECT new libdirector.domain.requestdto.LoanSaveDTO(loan) FROM Loan loan WHERE user_Id= :id")
 	Page<CategorySaveDTO> findAllUserLoansWithPage(Pageable page,Long id);
-*/
+
 
 
 }

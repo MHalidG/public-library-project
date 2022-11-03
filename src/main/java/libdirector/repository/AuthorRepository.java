@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface AuthorRepository extends JpaRepository<Author, Long>{
 
-
+//Repolardan Birinde mesele var halletmemiz gerekiyor.
 
     @Query("SELECT new libdirector.domain.requestdto.AuthorSaveDTO(author) FROM Author author")
     Page<AuthorSaveDTO> findAllAuthorsWithPage(Pageable page);

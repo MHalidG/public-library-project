@@ -36,9 +36,9 @@ public class LoanService {
 
 		Loan loan = new Loan();
 
-		Book book=bookRepository.findById(loanSaveDTO.getBookId()).
+		Book book=bookRepository.findById(loanSaveDTO.getBookId().getId()).
 				orElseThrow(() -> new ResourceNotFoundException(String.format(ErrorMessage.BOOK_NOT_FOUND_MESSAGE, loanSaveDTO.getBookId())));
-		User user=userRepository.findById(loanSaveDTO.getUserId()).
+		User user=userRepository.findById(loanSaveDTO.getUserId().getId()).
 				orElseThrow(() -> new ResourceNotFoundException(String.format(ErrorMessage.USER_NOT_FOUND_MESSAGE, loanSaveDTO.getUserId())));
 
 		//Check to isn't returned books  in time

@@ -1,12 +1,9 @@
 package libdirector.controller;
 
 import libdirector.domain.entities.User;
-import libdirector.domain.requestdto.CategorySaveDTO;
 import libdirector.domain.requestdto.LoanSaveDTO;
-import libdirector.domain.requestdto.UserDTO;
 import libdirector.service.UserService;
 import lombok.AllArgsConstructor;
-import org.apache.coyote.Response;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -17,7 +14,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import java.util.List;
 
 @RestController
 @RequestMapping("/user")
