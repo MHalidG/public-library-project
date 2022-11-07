@@ -10,6 +10,8 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static javax.persistence.GenerationType.TABLE;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -18,9 +20,13 @@ import java.util.List;
 @Entity
 @Table(name = "tbl_authors")
 public class Author {
-	
+
+
     @Id
-    @GeneratedValue(strategy=GenerationType.SEQUENCE)//Defaultu AUTOdur
+    //@GeneratedValue(strategy=GenerationType.SEQUENCE)//Defaultu AUTOdur
+    //@GeneratedValue(strategy = GenerationType.TABLE)
+    @GeneratedValue(strategy=TABLE, generator="ID_TABLE")
+    @Column(name="AUTHOR_ID")
     private Long id;
 
     @Column(nullable = false)
