@@ -21,12 +21,10 @@ import static javax.persistence.GenerationType.TABLE;
 @Table(name = "tbl_authors")
 public class Author {
 
-
     @Id
     //@GeneratedValue(strategy=GenerationType.SEQUENCE)//Defaultu AUTOdur
     //@GeneratedValue(strategy = GenerationType.TABLE)
-    @GeneratedValue(strategy=TABLE, generator="ID_TABLE")
-    @Column(name="AUTHOR_ID")
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
 
     @Column(nullable = false)
