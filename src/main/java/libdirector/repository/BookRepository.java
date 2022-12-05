@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface BookRepository extends JpaRepository<Book, Long>{
-
+/*
 
     @Query(value = "SELECT Book FROM tbl_books l  WHERE CONTAINS(l.books_name,:query) " +
             "OR CONTAINS(l.books_name,:query) AND l.category_id= :cat OR l.author_id= :author " +
@@ -21,7 +21,7 @@ public interface BookRepository extends JpaRepository<Book, Long>{
                                    @Param("author")Long author,
                                    @Param("query") String query);
 
-
+*/
 }
 
 /*Yazilmasi gereken sorgu

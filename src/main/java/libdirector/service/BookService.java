@@ -48,9 +48,11 @@ public class BookService {
 		return book;
 	}
 
-	public Page<Book> findAllWithPage(Pageable pageable, Long cat, Long publisher, Long author, String query) {
+	public void /*Page<Book>*/ findAllWithPage(Pageable pageable, Long cat, Long publisher, Long author, String query) {
 
-		return bookRepository.findAllBookWithPage(pageable,cat,publisher,author,query);
+
+		//return bookRepository.findAllBookWithPage(pageable,cat,publisher,author,query);
+
 		//return authorRepository.findAllBookWithPage(pageable,author,query);
 		//return publisherRepository.findAllBookWithPage(pageable,publisher,query);
 	}

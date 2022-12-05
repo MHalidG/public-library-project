@@ -40,7 +40,7 @@ public class BookController {
 
         return new ResponseEntity<>(map, HttpStatus.CREATED);
 
-    }
+    }/*
     //13 Tamamlanmadi
     @GetMapping
     public ResponseEntity<Page<Book>> getAllWithPage(@RequestParam String query,
@@ -55,7 +55,7 @@ public class BookController {
         Page<Book> bookPage = bookService.findAllWithPage(pageable,cat,publisher,author,query);
 
         return ResponseEntity.ok(bookPage);
-    }
+    }*/
     //14
     @GetMapping("/{bookId}")
     public ResponseEntity<Book> getBookById(@PathVariable Long bookId){
