@@ -47,8 +47,8 @@ public class BookService {
 		bookRepository.save(book);
 		return book;
 	}
-
-	public void /*Page<Book>*/ findAllWithPage(Pageable pageable, Long cat, Long publisher, Long author, String query) {
+/*
+	public void /*Page<Book> findAllWithPage(Pageable pageable, Long cat, Long publisher, Long author, String query) {
 
 
 		//return bookRepository.findAllBookWithPage(pageable,cat,publisher,author,query);
@@ -56,7 +56,7 @@ public class BookService {
 		//return authorRepository.findAllBookWithPage(pageable,author,query);
 		//return publisherRepository.findAllBookWithPage(pageable,publisher,query);
 	}
-
+*/
     public Book getBookById(Long bookId) {
 		return bookRepository.findById(bookId).orElseThrow(()-> new RuntimeException(String.format(ErrorMessage.BOOK_NOT_FOUND_MESSAGE)));
     }
